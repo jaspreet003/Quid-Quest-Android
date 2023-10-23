@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.androidclass2023.quidquest"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.androidclass2023.quidquest"

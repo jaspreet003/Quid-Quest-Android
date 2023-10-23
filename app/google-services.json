@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "434288445466",
+    "firebase_url": "https://quid-quest-default-rtdb.firebaseio.com",
+    "project_id": "quid-quest",
+    "storage_bucket": "quid-quest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434288445466:android:91b67703f2a30a807269a3",
+        "android_client_info": {
+          "package_name": "com.androidclass2023.quidquest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjHziGJoORRWJg3yLC9zduxtamzH42PJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

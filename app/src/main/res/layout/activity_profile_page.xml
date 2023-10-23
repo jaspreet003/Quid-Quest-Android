@@ -20,153 +20,89 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/profile_picture_icon"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/txtVFirstNameProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="30dp"
             android:text="First Name"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"
+             />
 
         <EditText
             android:id="@+id/editTxtFirstNameProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+             />
 
         <TextView
             android:id="@+id/txtVLastNameProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Last Name"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"/>
 
         <EditText
             android:id="@+id/editTxtLastNameProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+             />
 
         <TextView
             android:id="@+id/txtVEmailProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Email"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"/>
 
         <EditText
             android:id="@+id/editTxtEmailProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage" />
 
         <TextView
             android:id="@+id/txtVPhoneNumberProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Phone Number"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"
+             />
 
         <EditText
             android:id="@+id/editTxtPhoneNumberProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+             />
 
         <TextView
             android:id="@+id/txtVAccountNumberProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Account Number"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"
+            />
 
         <EditText
             android:id="@+id/editTxtAccountNumberProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+            />
 
         <TextView
             android:id="@+id/txtVTransitNumberProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Transit Number"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"
+            />
 
         <EditText
             android:id="@+id/editTxtTransitNumberProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+             />
 
         <TextView
             android:id="@+id/txtVInstituteNumberProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="10dp"
             android:text="Institute Number"
-            android:textAlignment="viewStart"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            style="@style/textViewProfilePage"
+             />
 
         <EditText
             android:id="@+id/editTxtInstituteNumberProfile"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/custom_edittext"
-            android:backgroundTint="@color/gray" />
+            style="@style/editTextProfilePage"
+            />
 
     </LinearLayout>
 

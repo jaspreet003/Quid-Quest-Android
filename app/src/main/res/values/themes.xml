@@ -33,4 +33,8 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="titleTextViewForCardViews">
+
+    </style>
+
 </resources>

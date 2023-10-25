@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Quid-Quest</string>
+    <string name="notification_icon_description">an icon for notification</string>
 </resources>

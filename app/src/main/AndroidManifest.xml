@@ -13,7 +13,7 @@
         android:theme="@style/Theme.QuidQuest"
         tools:targetApi="31">
         <activity
-            android:name=".EmployeeLIstScreen"
+            android:name=".ManagerDashboardActivity"
             android:exported="false"/>
         <activity
             android:name=".OnboardingCreatePassword"
@@ -21,7 +21,6 @@
         <activity
             android:name=".OnboardingVerifyDetails"
             android:exported="false"/>
-
         <activity
             android:name=".OnboardingBankDetails"
             android:exported="false" />

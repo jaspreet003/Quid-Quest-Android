@@ -31,7 +31,7 @@
             android:id="@+id/imageView4"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@tools:sample/avatars" />
+            android:src="@drawable/category_icon" />
 
         <TextView
             android:id="@+id/textView2"
@@ -59,7 +59,7 @@
             android:id="@+id/imageView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@tools:sample/avatars" />
+            android:src="@drawable/category_icon" />
 
         <TextView
             android:id="@+id/textView3"
@@ -112,7 +112,7 @@
             android:id="@+id/imageView10"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@tools:sample/avatars" />
+            android:src="@drawable/category_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"

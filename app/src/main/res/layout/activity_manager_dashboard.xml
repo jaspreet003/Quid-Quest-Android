@@ -163,12 +163,15 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutDashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="fixed"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            >
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"

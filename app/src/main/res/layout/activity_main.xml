@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OpenExpenseScreen"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="169dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

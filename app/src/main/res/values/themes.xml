@@ -13,4 +13,21 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="profile_settings_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center_vertical|left</item>
+    </style>
+    <style name="settings_rows">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/bottom_borders</item>
+    </style>
+    <style name="Expenses_Text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

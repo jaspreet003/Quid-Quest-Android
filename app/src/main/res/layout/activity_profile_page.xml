@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfilePage"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgProfilePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_picture_icon"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/txtVFirstNameProfile"
+            android:text="First Name"
+            style="@style/textViewProfilePage"
+             />
+
+        <EditText
+            android:id="@+id/editTxtFirstNameProfile"
+            style="@style/editTextProfilePage"
+             />
+
+        <TextView
+            android:id="@+id/txtVLastNameProfile"
+            android:text="Last Name"
+            style="@style/textViewProfilePage"/>
+
+        <EditText
+            android:id="@+id/editTxtLastNameProfile"
+            style="@style/editTextProfilePage"
+             />
+
+        <TextView
+            android:id="@+id/txtVEmailProfile"
+            android:text="Email"
+            style="@style/textViewProfilePage"/>
+
+        <EditText
+            android:id="@+id/editTxtEmailProfile"
+            style="@style/editTextProfilePage" />
+
+        <TextView
+            android:id="@+id/txtVPhoneNumberProfile"
+            android:text="Phone Number"
+            style="@style/textViewProfilePage"
+             />
+
+        <EditText
+            android:id="@+id/editTxtPhoneNumberProfile"
+            style="@style/editTextProfilePage"
+             />
+
+        <TextView
+            android:id="@+id/txtVAccountNumberProfile"
+            android:text="Account Number"
+            style="@style/textViewProfilePage"
+            />
+
+        <EditText
+            android:id="@+id/editTxtAccountNumberProfile"
+            style="@style/editTextProfilePage"
+            />
+
+        <TextView
+            android:id="@+id/txtVTransitNumberProfile"
+            android:text="Transit Number"
+            style="@style/textViewProfilePage"
+            />
+
+        <EditText
+            android:id="@+id/editTxtTransitNumberProfile"
+            style="@style/editTextProfilePage"
+             />
+
+        <TextView
+            android:id="@+id/txtVInstituteNumberProfile"
+            android:text="Institute Number"
+            style="@style/textViewProfilePage"
+             />
+
+        <EditText
+            android:id="@+id/editTxtInstituteNumberProfile"
+            style="@style/editTextProfilePage"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnUpdateProfile"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:text="Update Profile"
+            android:backgroundTint="@color/purple"
+            app:cornerRadius = "10dp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

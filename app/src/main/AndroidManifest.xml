@@ -42,13 +42,7 @@
             android:name=".OnboardWelcome"
             android:exported="false" />
 
-        <activity
-            android:name=".ProfilePage"
-            android:exported="false" />
 
-        <activity
-            android:name=".ResetPassword"
-            android:exported="false" />
 
         <activity
             android:name=".AddExpenseActivity"
@@ -58,13 +52,7 @@
             android:name=".SingleExpenseActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".ForgotPassword"
-            android:exported="false" />
 
-        <activity
-            android:name=".Login"
-            android:exported="false" />
 
         <activity
             android:name=".Expense_Screen"

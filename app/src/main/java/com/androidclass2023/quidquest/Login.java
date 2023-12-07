@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth auth;
     private EditText emailField, passwordField;
+    private TextView txtVForgotPassword;
     private Button btnLogin;
 
     @Override
@@ -24,15 +26,20 @@ public class Login extends AppCompatActivity {
         emailField = findViewById(R.id.editTxtEmailLogin);
         passwordField = findViewById(R.id.editTxtPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
+        txtVForgotPassword = findViewById(R.id.txtVForgotPasswordLogin);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn(v);
-            }
-        });
+        btnLogin.setOnClickListener(this);
+        txtVForgotPassword.setOnClickListener(this);
     }
-
+    public void onClick(View v) {
+        if(v.getId()==R.id.btnLogin){
+            signIn(v);
+        }
+        if(v.getId()==R.id.txtVForgotPasswordLogin){
+            Intent intent = new Intent(Login.this, ForgotPassword.class);
+            startActivity(intent);
+        }
+    }
     public void signIn(View view) {
         String email = emailField.getText().toString();
         String password = passwordField.getText().toString();

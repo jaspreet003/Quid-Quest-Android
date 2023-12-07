@@ -23,6 +23,15 @@
         <item name="android:backgroundTint">@color/gray</item>
     </style>
 
+    <style name="editTextUpdatePwPage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/custom_edittext</item>
+        <item name="android:backgroundTint">@color/gray</item>
+    </style>
+
 
     <style name="profile_settings_text">
         <item name="android:textSize">20sp</item>

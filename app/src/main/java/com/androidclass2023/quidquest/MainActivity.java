@@ -1,11 +1,11 @@
 package com.androidclass2023.quidquest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-
+import android.view.View;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        TextView tvLogin = findViewById(R.id.tvLogin);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -33,10 +34,30 @@ public class MainActivity extends AppCompatActivity {
             // Handle navigation view item clicks here.
             int id = item.getItemId();
 
-            // if statements to check id and start new activity or fragment
+            if (id == R.id.nav_dashboard) {
+                Intent intent = new Intent(MainActivity.this, ManagerDashboardActivity.class);
+                startActivity(intent);
+            } else if (id == R.id.nav_expense) {
+                Intent intent = new Intent(MainActivity.this, Expense_Screen.class);
+                startActivity(intent);
+            } else if (id == R.id.nav_settings) {
+                Intent intent = new Intent(MainActivity.this, Seetings_Menu.class);
+                startActivity(intent);
+            } else if (id==R.id.nav_employees) {
+                Intent intent = new Intent(MainActivity.this, EmployeeLIstScreen.class);
+                startActivity(intent);
+            }
 
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
+        });
+
+        tvLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+            }
         });
     }
 

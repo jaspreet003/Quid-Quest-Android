@@ -42,11 +42,12 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"
-                android:src="@drawable/baseline_keyboard_arrow_down_24"
-                android:layout_gravity="center"/>
+                android:src="@drawable/profile_picture_icon"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
 
         <androidx.cardview.widget.CardView

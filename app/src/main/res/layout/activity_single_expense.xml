@@ -82,12 +82,13 @@
                 style="@style/Expenses_Text"/>
 
             <EditText
-                android:id="@+id/edAddedBy"
+                android:id="@+id/textViewUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/tvExpenseAmount"
@@ -98,7 +99,7 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/edExpenseAmount"
+                android:id="@+id/textViewAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -114,7 +115,7 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/edDepartment"
+                android:id="@+id/textViewUserDepartment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -130,7 +131,7 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/edCategory"
+                android:id="@+id/textViewCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -174,7 +175,7 @@
                 android:layout_marginTop="10dp"/>
 
             <EditText
-                android:id="@+id/edDescription"
+                android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -188,7 +189,7 @@
                 android:layout_marginTop="50dp">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnDecline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -197,7 +198,7 @@
                     />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnApprove"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

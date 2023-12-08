@@ -34,7 +34,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     private void initialize() {
         Bundle extras = getIntent().getExtras();
         userEmail = extras.getString("userEmail");
-        decodedEmail = userEmail.replace("_", ".").replace("-", "@");
+        decodedEmail = USER.decodeEmail(userEmail);
         firstNameEditText = findViewById(R.id.editTxtFirstNameOnB);
         lastNameEditText = findViewById(R.id.editTxtLastNameOnB);
         phoneNumberEditText = findViewById(R.id.ediTxtEnterPhoneNumber);

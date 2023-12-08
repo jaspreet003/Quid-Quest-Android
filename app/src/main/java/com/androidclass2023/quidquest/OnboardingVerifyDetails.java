@@ -75,7 +75,7 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
     private void saveEmployeeDetails() {
         updateEmployeeFromFields();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(USER_REF);
-        String encodedEmail = user.encodeEmail(user.getEmail());
+        String encodedEmail = USER.encodeEmail(user.getEmail());
         userRef.child(encodedEmail).setValue(user)
                 .addOnSuccessListener(aVoid -> startNextActivity())
                 .addOnFailureListener(this::handleDatabaseWriteFailure);

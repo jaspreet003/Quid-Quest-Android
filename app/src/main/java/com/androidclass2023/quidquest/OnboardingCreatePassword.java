@@ -52,7 +52,9 @@ public class OnboardingCreatePassword extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser authUser = mAuth.getCurrentUser();
 
-                        String encodedEmail = user.encodeEmail(email);
+                        user.setFirebaseId(authUser.getUid());
+
+                        String encodedEmail = USER.encodeEmail(email);
                         mDatabase.child("USERS").child(encodedEmail).setValue(user);
 
                         Toast.makeText(OnboardingCreatePassword.this, "Account created successfully.",

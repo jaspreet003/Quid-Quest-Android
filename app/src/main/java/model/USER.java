@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class USER implements Serializable {
 
-    String firstName, lastName, email, phoneNumber;
+    String firstName, lastName, email, phoneNumber, firebaseId;
     int accNum, transNum, insNum;
 
     public USER(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
@@ -74,7 +74,19 @@ public class USER implements Serializable {
         this.insNum = insNum;
     }
 
-    public String encodeEmail(String email) {
-        return email.replace('.', '-').replace('@', '-');
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
+    }
+
+    public static String encodeEmail(String email) {
+        return email.replace('.', '_').replace('@', '-');
+    }
+
+    public static String decodeEmail(String email) {
+        return email.replace('_', '.').replace('-', '@');
     }
 }

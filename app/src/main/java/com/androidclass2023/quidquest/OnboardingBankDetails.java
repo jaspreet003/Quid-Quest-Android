@@ -60,10 +60,10 @@ public class OnboardingBankDetails extends AppCompatActivity {
 
     private void updateUser(USER user) {
         // Get a reference to the USERS node
-        DatabaseReference employeesDB = FirebaseDatabase.getInstance().getReference("employees");
-        String encodedEmail = user.encodeEmail(user.getEmail());
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("USERS");
+        String encodedEmail = USER.encodeEmail(user.getEmail());
         // Write the updated employee data
-        employeesDB.child(String.valueOf(encodedEmail)).setValue(user)
+        usersRef.child(String.valueOf(encodedEmail)).setValue(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

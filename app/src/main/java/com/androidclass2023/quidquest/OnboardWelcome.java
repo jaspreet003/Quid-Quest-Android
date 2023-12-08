@@ -33,6 +33,7 @@ public class OnboardWelcome extends AppCompatActivity {
 
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
             userId = data.getLastPathSegment();
+            Log.d("got this email:", userId);
         }
 
         btnBegin = findViewById(R.id.btnBeginOnboarding);

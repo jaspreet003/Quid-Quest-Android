@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String fullName, email, department, firstName, lastName, phoneNumber, firebaseId;
+    private String Name, email, department, firstName, lastName, phoneNumber, firebaseId;
 
     private int accountNumber, instituteNumber, totalExpenses, transitNumber;
 
@@ -12,11 +12,11 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String fullName, String email, String department, int accountNumber, int instituteNumber,
+    public User(String Name, String email, String department, int accountNumber, int instituteNumber,
             int totalExpenses, int transitNumber, Expense expense) {
-        this.fullName = fullName;
+        this.Name = Name;
         this.email = email;
-        this.department = department;
+        this.department = "TBD";
         this.accountNumber = accountNumber;
         this.instituteNumber = instituteNumber;
         this.totalExpenses = totalExpenses;
@@ -33,6 +33,7 @@ public class User implements Serializable {
         this.accountNumber = accNum;
         this.transitNumber = transNum;
         this.instituteNumber = insNum;
+        this.department = "TBD";
     }
 
     public String getFirstName() {
@@ -83,12 +84,12 @@ public class User implements Serializable {
         this.transitNumber = transNum;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return Name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public String getDepartment() {

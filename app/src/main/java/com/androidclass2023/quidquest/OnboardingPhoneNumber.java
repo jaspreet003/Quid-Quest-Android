@@ -66,6 +66,8 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
                 0,
                 0);
 
+        newUser.setName(firstName+" "+lastName);
+
         Log.d("OnboardingPhoneNumber", "updateUser: " + newUser.toString());
         Log.d("OnboardingPhoneNumber", "updateUser: " + userEmail);
         // Write the new employee data

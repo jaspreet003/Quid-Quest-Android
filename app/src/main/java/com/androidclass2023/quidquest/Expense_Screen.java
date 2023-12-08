@@ -28,8 +28,6 @@ import adapters.ExpenseAdapter;
 import model.Expense;
 
 public class Expense_Screen extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
-
-
     Button btnAdd;
 
     private ListView lvExpenses;
@@ -53,8 +51,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
         initialize();
 
-
-
     }
 
 
@@ -74,8 +70,8 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     // Get user name and department
                     String email = userSnapshot.getKey();
-                    String userName = userSnapshot.child("Name").getValue(String.class);
-                    String userDepartment = userSnapshot.child("Department").getValue(String.class);
+                    String userName = userSnapshot.child("name").getValue(String.class);
+                    String userDepartment = userSnapshot.child("department").getValue(String.class);
 
                     DataSnapshot expensesSnapshot = userSnapshot.child("EXPENSES").child("CATEGORY");
                     for (DataSnapshot categorySnapshot : expensesSnapshot.getChildren()) {

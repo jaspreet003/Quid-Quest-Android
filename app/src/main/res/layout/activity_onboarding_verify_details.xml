@@ -7,23 +7,6 @@
     tools:context=".OnboardingVerifyDetails"
     android:orientation="vertical">
 
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imgProfilePicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/profile_picture_icon"
-            android:layout_marginTop="10dp"
-            />
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +20,7 @@
             />
 
         <EditText
-            android:id="@+id/editTxtFirstNameProfile"
+            android:id="@+id/editTxtFirstNameProfileONB"
             style="@style/editTextProfilePage"
             />
 
@@ -47,18 +30,9 @@
             style="@style/textViewProfilePage"/>
 
         <EditText
-            android:id="@+id/editTxtLastNameProfile"
+            android:id="@+id/editTxtLastNameProfileONB"
             style="@style/editTextProfilePage"
             />
-
-        <TextView
-            android:id="@+id/txtVEmailProfile"
-            android:text="Email"
-            style="@style/textViewProfilePage"/>
-
-        <EditText
-            android:id="@+id/editTxtEmailProfile"
-            style="@style/editTextProfilePage" />
 
         <TextView
             android:id="@+id/txtVPhoneNumberProfile"
@@ -67,7 +41,7 @@
             />
 
         <EditText
-            android:id="@+id/editTxtPhoneNumberProfile"
+            android:id="@+id/editTxtPhoneNumberProfileONB"
             style="@style/editTextProfilePage"
             />
 
@@ -78,7 +52,7 @@
             />
 
         <EditText
-            android:id="@+id/editTxtAccountNumberProfile"
+            android:id="@+id/editTxtAccountNumberProfileONB"
             style="@style/editTextProfilePage"
             />
 
@@ -89,7 +63,7 @@
             />
 
         <EditText
-            android:id="@+id/editTxtTransitNumberProfile"
+            android:id="@+id/editTxtTransitNumberProfileONB"
             style="@style/editTextProfilePage"
             />
 
@@ -100,7 +74,7 @@
             />
 
         <EditText
-            android:id="@+id/editTxtInstituteNumberProfile"
+            android:id="@+id/editTxtInstituteNumberProfileONB"
             style="@style/editTextProfilePage"
             />
 
@@ -114,7 +88,7 @@
         >
 
         <Button
-            android:id="@+id/btnEdit"
+            android:id="@+id/btnEditVerifyDetailsONB"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:text="EDIT"
@@ -125,7 +99,7 @@
             />
 
         <Button
-            android:id="@+id/btnContinue"
+            android:id="@+id/btnContinueVerifyDetailsONB"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:text="CONTINUE"

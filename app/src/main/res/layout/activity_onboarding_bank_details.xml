@@ -52,7 +52,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/gray2"
                 android:textStyle="bold"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/gray2"
                 android:textStyle="bold"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/gray2"
                 android:textStyle="bold"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -101,10 +101,10 @@
 
 
             <Button
-                android:id="@+id/btnNext"
+                android:id="@+id/btnNextOnbBankDetails"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:text="NEXT"
                 android:backgroundTint="@color/green"
                 app:cornerRadius = "10dp"/>

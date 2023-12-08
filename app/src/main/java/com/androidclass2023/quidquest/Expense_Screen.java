@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -28,7 +29,6 @@ import model.Expense;
 
 public class Expense_Screen extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
 
-    LinearLayout  mLayout;
 
     Button btnAdd;
 
@@ -39,6 +39,8 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
     //FirebaseStorage storage;
 
     //StorageReference storageReference, sRef;
+    LinearLayout btnLayout, mLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +59,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
 
     private void initialize() {
-
         lvExpenses = findViewById(R.id.lvExpenses);
         lvExpenses.setClickable(true);
         lvExpenses.setOnItemClickListener(this);
@@ -161,5 +162,27 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
 
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btnLayout = findViewById(R.id.btnLayout);
+        mLayout = findViewById(R.id.mLayout);
+        mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void expand(View view) {
+        int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
+
+        TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
+        btnLayout.setVisibility(v);
     }
 }

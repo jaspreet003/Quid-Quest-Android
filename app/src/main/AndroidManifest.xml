@@ -13,6 +13,30 @@
         android:theme="@style/Theme.QuidQuest"
         tools:targetApi="31">
         <activity
+            android:name=".AddCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageCategoryActivity"
+            android:exported="true"/>
+                <activity
+            android:name=".AddDepartmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ManageDepartmentActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".InviteEmployeeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmployeeEditPage"
+            android:exported="false" />
+        <activity
+            android:name=".EmployeeLIstScreen"
+            android:exported="true" />
+        <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="true"/>
+        <activity
             android:name=".ResetPassword"
             android:exported="false" />
         <activity
@@ -43,9 +67,6 @@
             android:name=".CreateProfile"
             android:exported="false" />
         <activity
-            android:name=".OnboardWelcome"
-            android:exported="false" />
-        <activity
             android:name=".AddExpenseActivity"
             android:exported="false"/>
         <activity
@@ -60,11 +81,23 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+           <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+        <activity
+            android:name=".OnboardWelcome"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="quid.quest"
+                    android:pathPrefix="/employeeAndroid/"
+                    android:scheme="https" />
             </intent-filter>
 
         </activity>

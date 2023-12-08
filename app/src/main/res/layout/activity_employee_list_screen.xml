@@ -31,18 +31,23 @@
             android:id="@+id/imageView4"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/category_icon" />
+            android:src="@drawable/search_icon"
+            android:layout_gravity="center"/>
 
-        <TextView
-            android:id="@+id/textView2"
+        <EditText
+            android:id="@+id/edName"
+            android:ems="10"
+            android:inputType="text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="search by name"
+            android:text=""
             android:textColor="#A8A0A0"
-            android:textSize="15sp" />
+            android:textSize="15sp"/>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -53,31 +58,34 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/employee_filter_border_back"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/category_icon" />
+            android:src="@drawable/search_icon" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/spnDepartment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="search by department"
-            android:textColor="#A8A0A0"
-            android:textSize="15sp" />
+            android:layout_marginStart="15dp"/>
 
-        <ImageView
-            android:id="@+id/dropdownSearchDepartment"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/baseline_keyboard_arrow_down_24" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:layout_gravity="right"
+        android:backgroundTint="#00FFFFFF"
+        android:textColor="@color/black"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,67 +97,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Showing 1 of 1 results"
+            android:text="Employees:"
             android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:background="@drawable/employee_list_border_back">
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/category_icon" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Full Name"
-                android:textColor="@color/black"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="fullname@gmail.come"
-                android:textColor="#817B7B"
-                android:textSize="15dp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/red"
-            android:text="Edit"
             android:textSize="15sp"
-            android:textStyle="bold"
-            />
-
+           />
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvEmployees"
+        android:layout_width="380dp"
+        android:layout_height="350dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"
+        tools:listitem="@layout/profile_item"
+        android:backgroundTint="#00000000"
+        android:divider="#00000000"
+        android:dividerHeight="10.0sp"
+        android:headerDividersEnabled="true"
+        android:paddingTop="15dp"
+        android:layout_gravity="center" />
+
+    <Button
+        android:id="@+id/btnInviteEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom"
+
+        android:backgroundTint="#2BB429"
+        android:text="+ INVITE NEW EMPLOYEE"
+        android:textSize="20sp" />
 
 
 </LinearLayout>

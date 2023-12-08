@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,14 +21,23 @@
             android:name=".EmployeeLIstScreen"
             android:exported="true" />
         <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilePage"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".ManagerDashboardActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".OnboardingCreatePassword"
             android:exported="false" />
@@ -45,24 +53,40 @@
         <activity
             android:name=".CreateProfile"
             android:exported="false" />
+
         <activity
-            android:name=".OnboardWelcome"
+            android:name=".AddExpenseActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfilePage"
+            android:name=".SingleExpenseActivity"
             android:exported="false" />
         <activity
-            android:name=".ResetPassword"
+            android:name=".Expense_Screen"
             android:exported="false" />
         <activity
-            android:name=".ForgotPassword"
-            android:exported="false" />
-        <activity
-            android:name=".Login"
+            android:name=".Seetings_Menu"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-    </application>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OnboardWelcome"
+            android:exported="true"
+            >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="quid.quest"
+                    android:pathPrefix="/employeeAndroid/" />
+            </intent-filter>
+         </activity>
+    </application>
 </manifest>

@@ -34,12 +34,12 @@
             android:id="@+id/txtVFirstNameProfile"
             android:text="First Name"
             style="@style/textViewProfilePage"
-             />
+            />
 
         <EditText
             android:id="@+id/editTxtFirstNameProfile"
             style="@style/editTextProfilePage"
-             />
+            />
 
         <TextView
             android:id="@+id/txtVLastNameProfile"
@@ -49,7 +49,7 @@
         <EditText
             android:id="@+id/editTxtLastNameProfile"
             style="@style/editTextProfilePage"
-             />
+            />
 
         <TextView
             android:id="@+id/txtVEmailProfile"
@@ -64,12 +64,12 @@
             android:id="@+id/txtVPhoneNumberProfile"
             android:text="Phone Number"
             style="@style/textViewProfilePage"
-             />
+            />
 
         <EditText
             android:id="@+id/editTxtPhoneNumberProfile"
             style="@style/editTextProfilePage"
-             />
+            />
 
         <TextView
             android:id="@+id/txtVAccountNumberProfile"
@@ -91,13 +91,13 @@
         <EditText
             android:id="@+id/editTxtTransitNumberProfile"
             style="@style/editTextProfilePage"
-             />
+            />
 
         <TextView
             android:id="@+id/txtVInstituteNumberProfile"
             android:text="Institute Number"
             style="@style/textViewProfilePage"
-             />
+            />
 
         <EditText
             android:id="@+id/editTxtInstituteNumberProfile"

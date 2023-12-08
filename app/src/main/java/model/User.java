@@ -1,118 +1,21 @@
 package model;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class USER implements Serializable {
 
-    private String fullName, email, department, firstName, lastName, phoneNumber, firebaseId;
+    String firstName, lastName, email, phoneNumber, firebaseId;
+    int accNum, transNum, insNum;
 
-    private int accountNumber, instituteNumber, totalExpenses, transitNumber;
-
-    private Expense expense;
-
-    public User(String fullName, String email, String department, int accountNumber, int instituteNumber,
-            int totalExpenses, int transitNumber, Expense expense) {
-        this.fullName = fullName;
-        this.email = email;
-        this.department = department;
-        this.accountNumber = accountNumber;
-        this.instituteNumber = instituteNumber;
-        this.totalExpenses = totalExpenses;
-        this.transitNumber = transitNumber;
-        this.expense = expense;
-    }
-
-    public User(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
+    public USER(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
             int insNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.accountNumber = accNum;
-        this.transitNumber = transNum;
-        this.instituteNumber = insNum;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public int getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public int getInstituteNumber() {
-        return instituteNumber;
-    }
-
-    public void setInstituteNumber(int instituteNumber) {
-        this.instituteNumber = instituteNumber;
-    }
-
-    public int getTotalExpenses() {
-        return totalExpenses;
-    }
-
-    public void setTotalExpenses(int totalExpenses) {
-        this.totalExpenses = totalExpenses;
-    }
-
-    public int getTransitNumber() {
-        return transitNumber;
-    }
-
-    public void setTransitNumber(int transitNumber) {
-        this.transitNumber = transitNumber;
-    }
-
-    public Expense getExpense() {
-        return expense;
-    }
-
-    public void setExpense(Expense expense) {
-        this.expense = expense;
-    }
-
-    public String getFirebaseId() {
-        return firebaseId;
-    }
-
-    public void setFirebaseId(String firebaseId) {
-        this.firebaseId = firebaseId;
-    }
-
-    public static String encodeEmail(String email) {
-        return email.replace('.', '_').replace('@', '-');
-    }
-
-    public static String decodeEmail(String email) {
-        return email.replace('_', '.').replace('-', '@');
+        this.accNum = accNum;
+        this.transNum = transNum;
+        this.insNum = insNum;
     }
 
     public String getFirstName() {
@@ -131,6 +34,14 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -139,9 +50,43 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return super.toString();
+    public int getAccNum() {
+        return accNum;
+    }
+
+    public void setAccNum(int accNum) {
+        this.accNum = accNum;
+    }
+
+    public int getTransNum() {
+        return transNum;
+    }
+
+    public void setTransNum(int transNum) {
+        this.transNum = transNum;
+    }
+
+    public int getInsNum() {
+        return insNum;
+    }
+
+    public void setInsNum(int insNum) {
+        this.insNum = insNum;
+    }
+
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
+    }
+
+    public static String encodeEmail(String email) {
+        return email.replace('.', '_').replace('@', '-');
+    }
+
+    public static String decodeEmail(String email) {
+        return email.replace('_', '.').replace('-', '@');
     }
 }

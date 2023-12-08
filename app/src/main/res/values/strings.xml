@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Quid-Quest</string>
     <string name="notification_icon_description">an icon for notification</string>
-        <string name="open">Open</string>
-        <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

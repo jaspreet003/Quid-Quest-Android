@@ -46,6 +46,7 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_screen);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Initialize Firebase Database reference
         databaseExpenses = FirebaseDatabase.getInstance().getReference().child("USERS");

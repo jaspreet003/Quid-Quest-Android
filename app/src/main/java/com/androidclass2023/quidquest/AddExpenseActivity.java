@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,8 +41,19 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initialize();
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initialize() {
@@ -107,9 +120,9 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
     private void AddExpense() {
 
         // Assuming you have the current user's email
-        String currentUserEmail = "sandeep-gmail_com"; // Replace with actual user email
         //String safeEmail = currentUserEmail.replace('.', '_');
-
+        String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail().replace("@", "-")
+                .replace(".", "_");
         // Get values from the UI
         String category = categoriesSpinner.getSelectedItem().toString();
         String description = edDescription.getText().toString();

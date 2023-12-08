@@ -31,10 +31,9 @@ public class OnboardWelcome extends AppCompatActivity {
         String action = intent.getAction();
         Uri data = intent.getData();
 
-        // if (Intent.ACTION_VIEW.equals(action) && data != null) {
-        // userId = data.getLastPathSegment();
-        // }
-
+        if (Intent.ACTION_VIEW.equals(action) && data != null) {
+            userId = data.getLastPathSegment();
+        }
 
         btnBegin = findViewById(R.id.btnBeginOnboarding);
         btnBegin.setOnClickListener(new View.OnClickListener() {

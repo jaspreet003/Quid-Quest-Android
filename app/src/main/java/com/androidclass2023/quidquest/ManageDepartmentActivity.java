@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,6 +33,7 @@ public class ManageDepartmentActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_department);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         departmentsDB = FirebaseDatabase.getInstance().getReference("Departments");
         listView = findViewById(R.id.lstVManageDepartments);
@@ -58,7 +60,16 @@ public class ManageDepartmentActivity extends AppCompatActivity implements View.
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imgAddDepartment) {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_password);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Initialize FirebaseAuth instance
         auth = FirebaseAuth.getInstance();
@@ -40,7 +42,16 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void updatePassword() {
         String newPassword = edNewPw.getText().toString().trim();
         String confirmNewPassword = edConfirmNewPw.getText().toString().trim();

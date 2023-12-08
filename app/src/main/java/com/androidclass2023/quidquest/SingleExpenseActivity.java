@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_expense);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Retrieve data from the Intent
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
@@ -48,7 +50,16 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
 
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void initialize() {
 
 

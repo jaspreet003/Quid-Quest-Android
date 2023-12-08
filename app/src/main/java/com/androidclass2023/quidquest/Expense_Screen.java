@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -27,6 +28,16 @@ public class Expense_Screen extends AppCompatActivity {
         btnLayout = findViewById(R.id.btnLayout);
         mLayout = findViewById(R.id.mLayout);
         mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void expand(View view) {

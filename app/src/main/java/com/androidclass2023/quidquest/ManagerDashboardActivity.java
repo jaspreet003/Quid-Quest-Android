@@ -62,10 +62,7 @@ public class ManagerDashboardActivity extends AppCompatActivity implements View.
             // Handle navigation view item clicks here.
             int id = item.getItemId();
 
-            if (id == R.id.nav_dashboard) {
-                Intent intent = new Intent(ManagerDashboardActivity.this, ManagerDashboardActivity.class);
-                startActivity(intent);
-            } else if (id == R.id.nav_expense) {
+            if (id == R.id.nav_expense) {
                 Intent intent = new Intent(ManagerDashboardActivity.this, Expense_Screen.class);
                 startActivity(intent);
             } else if (id == R.id.nav_settings) {

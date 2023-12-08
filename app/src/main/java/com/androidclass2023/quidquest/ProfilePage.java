@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,38 +13,30 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
+import model.User;
 
 public class ProfilePage extends AppCompatActivity {
-
     private EditText editTxtFirstNameProfile, editTxtLastNameProfile, editTxtEmailProfile,
             editTxtPhoneNumberProfile, editTxtAccountNumberProfile,
             editTxtTransitNumberProfile, editTxtInstituteNumberProfile;
-
     private DatabaseReference databaseUsers;
-    private FirebaseAuth auth;
-    private String userId;
+    private String encodedEmail;
+    private Button btnUpdateProfile;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        // Initialize Firebase Auth and Database Reference
-        auth = FirebaseAuth.getInstance();
-        databaseUsers = FirebaseDatabase.getInstance().getReference("USERS");
-
-        // Get the current user's UID
-        userId = auth.getCurrentUser().getUid();
-
-        // Initialize views
+        // Initialize EditText fields
         editTxtFirstNameProfile = findViewById(R.id.editTxtFirstNameProfile);
         editTxtLastNameProfile = findViewById(R.id.editTxtLastNameProfile);
         editTxtEmailProfile = findViewById(R.id.editTxtEmailProfile);
@@ -51,90 +44,90 @@ public class ProfilePage extends AppCompatActivity {
         editTxtAccountNumberProfile = findViewById(R.id.editTxtAccountNumberProfile);
         editTxtTransitNumberProfile = findViewById(R.id.editTxtTransitNumberProfile);
         editTxtInstituteNumberProfile = findViewById(R.id.editTxtInstituteNumberProfile);
+        btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
 
-        // Fetch and populate user data
+        // Initialize Firebase references
+        databaseUsers = FirebaseDatabase.getInstance().getReference().child("USERS");
+
         populateUserData();
 
-        // Set up the button to update profile information
-        Button btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                updateUserData();
+            public void onClick(View v) {
+                updateUser();
             }
         });
     }
 
     private void populateUserData() {
-        // Assuming the user's key is their UID from Firebase Auth
-        databaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseUser firebaseuser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseuser != null) {
+            String email = firebaseuser.getEmail();
+            if (email != null) {
+                Log.d("ProfilePage", "Firebase email: " + email);
+                encodedEmail = User.encodeEmail(email);
+                Log.d("ProfilePage", "Encoded email: " + encodedEmail);
+            }
+        }
+        databaseUsers.child(encodedEmail).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    User user = dataSnapshot.getValue(User.class);
+                    user = dataSnapshot.getValue(User.class);
                     if (user != null) {
-                        editTxtFirstNameProfile.setText(user.getFirstName());
-                        editTxtLastNameProfile.setText(user.getLastName());
-                        editTxtEmailProfile.setText(user.getEmail());
-                        editTxtPhoneNumberProfile.setText(user.getPhoneNumber());
-                        editTxtAccountNumberProfile.setText(user.getAccountNumber());
-                        editTxtTransitNumberProfile.setText(user.getTransitNumber());
-                        editTxtInstituteNumberProfile.setText(user.getInstituteNumber());
+                        editTxtFirstNameProfile.setText(String.valueOf(user.getFirstName()));
+                        editTxtLastNameProfile.setText(String.valueOf(user.getLastName()));
+                        editTxtEmailProfile.setText(String.valueOf(user.getEmail()));
+                        editTxtPhoneNumberProfile.setText(String.valueOf(user.getPhoneNumber()));
+                        editTxtAccountNumberProfile.setText(String.valueOf(user.getAccountNumber()));
+                        editTxtTransitNumberProfile.setText(String.valueOf(user.getTransitNumber()));
+                        editTxtInstituteNumberProfile.setText(String.valueOf(user.getInstituteNumber()));
                     }
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
+                Toast.makeText(ProfilePage.this, "Failed to get user data: " + databaseError.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void updateUserData() {
-        String firstName = editTxtFirstNameProfile.getText().toString().trim();
-        String lastName = editTxtLastNameProfile.getText().toString().trim();
-        String email = editTxtEmailProfile.getText().toString().trim(); // Add validation as needed
-        String phoneNumber = editTxtPhoneNumberProfile.getText().toString().trim();
-        String accountNumber = editTxtAccountNumberProfile.getText().toString().trim();
-        String transitNumber = editTxtTransitNumberProfile.getText().toString().trim();
-        String instituteNumber = editTxtInstituteNumberProfile.getText().toString().trim();
+    private void updateUser() {
+        // Get the updated data from the EditText fields
+        String firstName = editTxtFirstNameProfile.getText().toString();
+        String lastName = editTxtLastNameProfile.getText().toString();
+        String email = editTxtEmailProfile.getText().toString();
+        String phoneNumber = editTxtPhoneNumberProfile.getText().toString();
+        String accountNumber = editTxtAccountNumberProfile.getText().toString();
+        String transitNumber = editTxtTransitNumberProfile.getText().toString();
+        String instituteNumber = editTxtInstituteNumberProfile.getText().toString();
 
-        Map<String, Object> updates = new HashMap<>();
-        updates.put("FirstName", firstName);
-        updates.put("lastName", lastName);
-        updates.put("email", email); // Email updating might require specific handling
-        updates.put("phoneNumber", phoneNumber);
-        updates.put("accountNumber", accountNumber);
-        updates.put("transitNumber", transitNumber);
-        updates.put("instituteNumber", instituteNumber);
-        // ... Add other updates
+        // Update the existing User object with the new data
+        user.setFirstName(editTxtFirstNameProfile.getText().toString());
+        user.setLastName(editTxtLastNameProfile.getText().toString());
+        user.setEmail(editTxtEmailProfile.getText().toString());
+        user.setPhoneNumber(editTxtPhoneNumberProfile.getText().toString());
+        user.setAccountNumber(Integer.parseInt(editTxtAccountNumberProfile.getText().toString()));
+        user.setTransitNumber(Integer.parseInt(editTxtTransitNumberProfile.getText().toString()));
+        user.setInstituteNumber(Integer.parseInt(editTxtInstituteNumberProfile.getText().toString()));
 
-        // Update children of the user's database entry
-        databaseUsers.child(userId).updateChildren(updates)
+        // Update the user data in Firebase
+        databaseUsers.child(encodedEmail).setValue(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(ProfilePage.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
-                            Toast.makeText(ProfilePage.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfilePage.this,
+                                    "Failed to update profile: " + task.getException().getMessage(), Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });
     }
 
-    // A simple User class to match the structure of your Firebase data
-    public static class User {
-        private String firstName;
-        private String lastName;
-        // ... Other fields
-
-        public User() {
-            // Default constructor required for calls to DataSnapshot.getValue(User.class)
-        }
-
-
-        // Getters and setters for all fields
-    }
 }

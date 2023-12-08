@@ -9,7 +9,11 @@ public class User implements Serializable {
 
     private Expense expense;
 
-    public User(String fullName, String email, String department, int accountNumber, int instituteNumber, int totalExpenses, int transitNumber, Expense expense) {
+    public User() {
+    }
+
+    public User(String fullName, String email, String department, int accountNumber, int instituteNumber,
+            int totalExpenses, int transitNumber, Expense expense) {
         this.fullName = fullName;
         this.email = email;
         this.department = department;
@@ -19,6 +23,7 @@ public class User implements Serializable {
         this.transitNumber = transitNumber;
         this.expense = expense;
     }
+
     public User(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
             int insNum) {
         this.firstName = firstName;
@@ -78,7 +83,6 @@ public class User implements Serializable {
         this.transitNumber = transNum;
     }
 
-
     public String getFullName() {
         return fullName;
     }
@@ -87,7 +91,6 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
-
     public String getDepartment() {
         return department;
     }
@@ -95,7 +98,6 @@ public class User implements Serializable {
     public void setDepartment(String department) {
         this.department = department;
     }
-
 
     public int getInstituteNumber() {
         return instituteNumber;
@@ -128,7 +130,6 @@ public class User implements Serializable {
     public void setExpense(Expense expense) {
         this.expense = expense;
     }
-
 
     @Override
     public String toString() {

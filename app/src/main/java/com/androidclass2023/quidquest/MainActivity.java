@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         // If the user is already logged in, start the Dashboard activity
         if (currentUser != null) {
-            Intent intent = new Intent(MainActivity.this, OnboardWelcome.class);
+            Intent intent = new Intent(MainActivity.this, ManagerDashboardActivity.class);
             startActivity(intent);
             finish();
             return;

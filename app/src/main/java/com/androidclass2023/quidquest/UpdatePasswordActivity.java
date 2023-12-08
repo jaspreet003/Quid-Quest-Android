@@ -68,12 +68,14 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(UpdatePasswordActivity.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdatePasswordActivity.this, "Password updated successfully",
+                                    Toast.LENGTH_SHORT).show();
                             // Optional: sign out the user or navigate to the login screen
-                            auth.signOut();
+                            finish();
                             // Navigate to Login Activity or other appropriate activity
                         } else {
-                            Toast.makeText(UpdatePasswordActivity.this, "Failed to update password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdatePasswordActivity.this, "Failed to update password", Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                 });

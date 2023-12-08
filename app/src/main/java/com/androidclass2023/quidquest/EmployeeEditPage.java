@@ -33,6 +33,7 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
     Button btnRemoveEmployee, btnUpdate;
     String userEmail;
     DatabaseReference employeeDatabase, departmentDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +54,16 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
         btnRemoveEmployee = findViewById(R.id.btnRemove);
         btnRemoveEmployee.setOnClickListener(this);
         userEmail = getIntent().getStringExtra("user_email");
-        String email = userEmail.replace( "-", "@" ).replace( "_", "." );
+        String email = userEmail.replace("-", "@").replace("_", ".");
         tvEmail.setText(email);
         departmentDatabase = FirebaseDatabase.getInstance().getReference().child("Departments");
         departmentDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<String> departments = new ArrayList<>();
-                for (DataSnapshot snapshot1 : snapshot.getChildren())
-                {
-                        String department = snapshot1.getValue(String.class);
-                        departments.add(department);
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    String department = snapshot1.getValue(String.class);
+                    departments.add(department);
                 }
                 populateSpinner(departments);
             }
@@ -75,12 +75,10 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
         });
         setContent();
 
-
-
     }
 
     private void populateSpinner(ArrayList<String> departments) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,departments);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, departments);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spnDepartment.setAdapter(adapter);
     }
@@ -90,19 +88,18 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
         employeeDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     String userName = snapshot.child("Name").getValue(String.class);
-                    int totalExpense = snapshot.child("Total Expenses").getValue(int.class);
-                    int accountNumber = snapshot.child("Account Number").getValue(int.class);
-                    int transitNumber = snapshot.child("Transit Number").getValue(int.class);
-                    int instituteNumber = snapshot.child("Institute Number").getValue(int.class);
+                    Integer totalExpense = snapshot.child("Total Expenses").getValue(Integer.class);
+                    Integer accountNumber = snapshot.child("Account Number").getValue(Integer.class);
+                    Integer transitNumber = snapshot.child("Transit Number").getValue(Integer.class);
+                    Integer instituteNumber = snapshot.child("Institute Number").getValue(Integer.class);
 
-                    tvShowTotalExpenses.setText(String.valueOf("$"+totalExpense));
-                    tvShowAccountNumber.setText(String.valueOf(accountNumber));
-                    tvShowTransitNumber.setText(String.valueOf(transitNumber));
-                    tvShowInstituteNumber.setText(String.valueOf(instituteNumber));
-                    tvName.setText(userName);
+                    tvShowTotalExpenses.setText(totalExpense != null ? "$" + totalExpense : "N/A");
+                    tvShowAccountNumber.setText(accountNumber != null ? String.valueOf(accountNumber) : "N/A");
+                    tvShowTransitNumber.setText(transitNumber != null ? String.valueOf(transitNumber) : "N/A");
+                    tvShowInstituteNumber.setText(instituteNumber != null ? String.valueOf(instituteNumber) : "N/A");
+                    tvName.setText(userName != null ? userName : "N/A");
                 }
 
             }
@@ -117,16 +114,15 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btnUpdate)
-        {
+        if (id == R.id.btnUpdate) {
             employeeDatabase.child("Department").setValue(spnDepartment.getSelectedItem().toString());
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Employee Updated!");
-            builder.setMessage("You have updated the employee's department to : " + spnDepartment.getSelectedItem().toString());
+            builder.setMessage(
+                    "You have updated the employee's department to : " + spnDepartment.getSelectedItem().toString());
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Delete Employee");
             builder.setMessage("Are you sure you want to remove the employee?");

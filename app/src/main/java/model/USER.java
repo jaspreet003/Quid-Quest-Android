@@ -2,12 +2,12 @@ package model;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class USER implements Serializable {
 
     String firstName, lastName, email, phoneNumber;
-    int accNum, transNum, insNum, id;
+    int accNum, transNum, insNum;
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum, int insNum, int id) {
+    public USER(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum, int insNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -15,7 +15,6 @@ public class Employee implements Serializable {
         this.accNum = accNum;
         this.transNum = transNum;
         this.insNum = insNum;
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -72,13 +71,5 @@ public class Employee implements Serializable {
 
     public void setInsNum(int insNum) {
         this.insNum = insNum;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

@@ -13,14 +13,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.USER;
+import model.User;
 
 public class OnboardingCreatePassword extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText passwordField, confirmPasswordField;
     private Button btnNext;
-    private USER user;
+    private User user;
     private DatabaseReference mDatabase;
 
     @Override
@@ -29,7 +29,7 @@ public class OnboardingCreatePassword extends AppCompatActivity {
         setContentView(R.layout.activity_onboarding_create_password);
 
         Intent intent = getIntent();
-        user = (USER) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -54,7 +54,7 @@ public class OnboardingCreatePassword extends AppCompatActivity {
 
                         user.setFirebaseId(authUser.getUid());
 
-                        String encodedEmail = USER.encodeEmail(email);
+                        String encodedEmail = User.encodeEmail(email);
                         mDatabase.child("USERS").child(encodedEmail).setValue(user);
 
                         Toast.makeText(OnboardingCreatePassword.this, "Account created successfully.",

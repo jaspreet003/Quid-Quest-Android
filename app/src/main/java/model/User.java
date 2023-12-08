@@ -2,16 +2,18 @@ package model;
 
 import androidx.annotation.NonNull;
 
-public class User {
+import java.io.Serializable;
 
-    private String fullName, email, department;
+public class User implements Serializable {
+
+    private String fullName, email, department, firstName, lastName, phoneNumber, firebaseId;
 
     private int accountNumber, instituteNumber, totalExpenses, transitNumber;
 
     private Expense expense;
 
-
-    public User(String fullName, String email, String department, int accountNumber, int instituteNumber, int totalExpenses, int transitNumber, Expense expense) {
+    public User(String fullName, String email, String department, int accountNumber, int instituteNumber,
+            int totalExpenses, int transitNumber, Expense expense) {
         this.fullName = fullName;
         this.email = email;
         this.department = department;
@@ -22,6 +24,16 @@ public class User {
         this.expense = expense;
     }
 
+    public User(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
+            int insNum) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.accountNumber = accNum;
+        this.transitNumber = transNum;
+        this.instituteNumber = insNum;
+    }
 
     public String getFullName() {
         return fullName;
@@ -87,6 +99,45 @@ public class User {
         this.expense = expense;
     }
 
+    public String getFirebaseId() {
+        return firebaseId;
+    }
+
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
+    }
+
+    public static String encodeEmail(String email) {
+        return email.replace('.', '_').replace('@', '-');
+    }
+
+    public static String decodeEmail(String email) {
+        return email.replace('_', '.').replace('-', '@');
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     @NonNull
     @Override

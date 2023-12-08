@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.USER;
+import model.User;
 
 public class OnboardingPhoneNumber extends AppCompatActivity {
     EditText firstNameEditText, lastNameEditText, phoneNumberEditText;
@@ -34,7 +34,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     private void initialize() {
         Bundle extras = getIntent().getExtras();
         userEmail = extras.getString("userEmail");
-        decodedEmail = USER.decodeEmail(userEmail);
+        decodedEmail = User.decodeEmail(userEmail);
         firstNameEditText = findViewById(R.id.editTxtFirstNameOnB);
         lastNameEditText = findViewById(R.id.editTxtLastNameOnB);
         phoneNumberEditText = findViewById(R.id.ediTxtEnterPhoneNumber);
@@ -57,7 +57,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("USERS");
 
         // Create a new Employee object
-        USER newUser = new USER(
+        User newUser = new User(
                 firstName,
                 lastName,
                 decodedEmail,

@@ -164,7 +164,7 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnLayout = findViewById(R.id.btnLayout);
+//        btnLayout = findViewById(R.id.btnLayout);
         mLayout = findViewById(R.id.mLayout);
         mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
     }
@@ -179,10 +179,10 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         return super.onOptionsItemSelected(item);
     }
 
-    public void expand(View view) {
-        int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-
-        TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
-        btnLayout.setVisibility(v);
-    }
+//    public void expand(View view) {
+//        int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
+//
+//        TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
+//        btnLayout.setVisibility(v);
+//    }
 }

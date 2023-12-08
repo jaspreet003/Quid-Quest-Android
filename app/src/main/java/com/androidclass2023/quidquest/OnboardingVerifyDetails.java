@@ -9,11 +9,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import model.USER;
+import model.User;
 
 public class OnboardingVerifyDetails extends AppCompatActivity {
     private static final String USER_REF = "USERS";
-    private USER user;
+    private User user;
     private EditText firstNameEditText, lastNameEditText, phoneNumberEditText, accNumEditText, transNumEditText,
             insNumEditText;
     private Button btnContinue, btnEdit;
@@ -42,7 +42,7 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
     private void extractIntentExtras() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            user = (USER) extras.getSerializable("user");
+            user = (User) extras.getSerializable("user");
             if (user != null) {
                 populateDetails();
             }
@@ -53,9 +53,9 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
         firstNameEditText.setText(user.getFirstName());
         lastNameEditText.setText(user.getLastName());
         phoneNumberEditText.setText(String.valueOf(user.getPhoneNumber()));
-        accNumEditText.setText(String.valueOf(user.getAccNum()));
-        transNumEditText.setText(String.valueOf(user.getTransNum()));
-        insNumEditText.setText(String.valueOf(user.getInsNum()));
+        accNumEditText.setText(String.valueOf(user.getAccountNumber()));
+        transNumEditText.setText(String.valueOf(user.getTransitNumber()));
+        insNumEditText.setText(String.valueOf(user.getInstituteNumber()));
     }
 
     private void setFieldsEnabled(boolean enabled) {
@@ -75,7 +75,7 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
     private void saveDetails() {
         updateFromFields();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(USER_REF);
-        String encodedEmail = USER.encodeEmail(user.getEmail());
+        String encodedEmail = User.encodeEmail(user.getEmail());
         userRef.child(encodedEmail).setValue(user)
                 .addOnSuccessListener(aVoid -> startNextActivity())
                 .addOnFailureListener(this::handleDatabaseWriteFailure);
@@ -85,9 +85,9 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
         user.setFirstName(firstNameEditText.getText().toString());
         user.setLastName(lastNameEditText.getText().toString());
         user.setPhoneNumber(phoneNumberEditText.getText().toString());
-        user.setAccNum(Integer.parseInt(accNumEditText.getText().toString()));
-        user.setTransNum(Integer.parseInt(transNumEditText.getText().toString()));
-        user.setInsNum(Integer.parseInt(insNumEditText.getText().toString()));
+        user.setAccountNumber(Integer.parseInt(accNumEditText.getText().toString()));
+        user.setTransitNumber(Integer.parseInt(transNumEditText.getText().toString()));
+        user.setInstituteNumber(Integer.parseInt(insNumEditText.getText().toString()));
     }
 
     private void startNextActivity() {

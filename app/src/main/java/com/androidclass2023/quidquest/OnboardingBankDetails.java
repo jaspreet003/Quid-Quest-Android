@@ -15,9 +15,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.USER;
+import model.User;
 public class OnboardingBankDetails extends AppCompatActivity {
-    USER user;
+    User user;
     EditText accNumEditText, transNumEditText, insNumEditText;
     Button nextButton;
 
@@ -29,7 +29,7 @@ public class OnboardingBankDetails extends AppCompatActivity {
         // Extract the employeeId and Employee object from the intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            user = (USER) extras.getSerializable("user");
+            user = (User) extras.getSerializable("user");
         }
 
         // Find the EditText fields by their IDs
@@ -48,9 +48,9 @@ public class OnboardingBankDetails extends AppCompatActivity {
                 int insNum = Integer.parseInt(insNumEditText.getText().toString());
 
                 // Update the Employee object
-                user.setAccNum(accNum);
-                user.setTransNum(transNum);
-                user.setInsNum(insNum);
+                user.setAccountNumber(accNum);
+                user.setTransitNumber(transNum);
+                user.setInstituteNumber(insNum);
 
                 // Update the employee in the Firebase Realtime Database
                 updateUser(user);
@@ -58,10 +58,10 @@ public class OnboardingBankDetails extends AppCompatActivity {
         });
     }
 
-    private void updateUser(USER user) {
+    private void updateUser(User user) {
         // Get a reference to the USERS node
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("USERS");
-        String encodedEmail = USER.encodeEmail(user.getEmail());
+        String encodedEmail = User.encodeEmail(user.getEmail());
         // Write the updated employee data
         usersRef.child(String.valueOf(encodedEmail)).setValue(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

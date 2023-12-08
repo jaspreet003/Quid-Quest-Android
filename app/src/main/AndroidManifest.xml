@@ -18,7 +18,7 @@
         <activity
             android:name=".ManageCategoryActivity"
             android:exported="true"/>
-                <activity
+        <activity
             android:name=".AddDepartmentActivity"
             android:exported="false" />
         <activity
@@ -76,16 +76,17 @@
             android:name=".Expense_Screen"
             android:exported="false" />
         <activity
-            android:name=".Seetings_Menu"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Settings_Menu"
             android:exported="true">
-           <intent-filter>
+
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-      </activity>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
         <activity
             android:name=".OnboardWelcome"
             android:exported="true">

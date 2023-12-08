@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 public class Employee implements Serializable {
 
-    String firstName, lastName, email;
-    int accNum, transNum, insNum;
+    String firstName, lastName, email, phoneNumber;
+    int accNum, transNum, insNum, id;
 
-    public Employee(String firstName, String lastName, String email, int accNum, int transNum, int insNum) {
+    public Employee(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum, int insNum, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.accNum = accNum;
         this.transNum = transNum;
         this.insNum = insNum;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -40,6 +42,14 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public int getAccNum() {
         return accNum;
     }
@@ -62,5 +72,13 @@ public class Employee implements Serializable {
 
     public void setInsNum(int insNum) {
         this.insNum = insNum;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -71,10 +71,10 @@ public class OnboardingBankDetails extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // The write was successful, start the next activity
-                        Intent intent = new Intent(OnboardingBankDetails.this, OnboardingVerifyDetails.class);
-                        intent.putExtra("employeeId", employeeId);
-                        intent.putExtra("employee", employee); // Note: Employee class must implement Serializable
-                        startActivity(intent);
+                        Intent newAct = new Intent(OnboardingBankDetails.this, OnboardingVerifyDetails.class);
+                        newAct.putExtra("employeeId", employeeId);
+                        newAct.putExtra("employee", employee);
+                        startActivity(newAct);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

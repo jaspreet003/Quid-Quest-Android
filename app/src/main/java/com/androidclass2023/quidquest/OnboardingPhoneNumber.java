@@ -57,7 +57,16 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
         DatabaseReference employeesDB = FirebaseDatabase.getInstance().getReference("employees");
 
         // Create a new Employee object
-        Employee newEmployee = new Employee(firstName, lastName, phoneNumber, 0, 0, 0);
+        Employee newEmployee = new Employee(
+                firstName,
+                lastName,
+                "",
+                phoneNumber,
+                employeeId,
+                0,
+                0,
+                0
+        );
 
         // Write the new employee data
         employeesDB.child(String.valueOf(employeeId)).setValue(newEmployee)

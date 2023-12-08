@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="btn_dashboard"></style>
-
     <style name="btn_dashboard_selected"></style>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <item name="colorPrimary">@color/darkGreen</item>
-</style>
+    <style name="editTextProfilePage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:background">@drawable/custom_edittext</item>
+        <item name="android:backgroundTint">@color/gray</item>
+    </style>
+
+    <style name="editTextUpdatePwPage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/custom_edittext</item>
+        <item name="android:backgroundTint">@color/gray</item>
+    </style>
+
+
+    <style name="profile_settings_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center_vertical|left</item>
+    </style>
+    <style name="settings_rows">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/bottom_borders</item>
+    </style>
+    <style name="Expenses_Text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="textViewProfilePage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="titleTextViewForCardViews">
+
+    </style>
 </resources>

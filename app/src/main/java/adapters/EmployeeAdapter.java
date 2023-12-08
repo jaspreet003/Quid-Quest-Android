@@ -22,8 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import model.Employee;
-
 public class EmployeeAdapter extends ArrayAdapter<String> {
 
     private int viewType;

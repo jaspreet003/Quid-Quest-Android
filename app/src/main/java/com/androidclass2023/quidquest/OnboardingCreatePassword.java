@@ -1,38 +1,68 @@
 package com.androidclass2023.quidquest;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import model.USER;
 
 public class OnboardingCreatePassword extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText emailField;
-    private EditText passwordField;
+    private EditText passwordField, confirmPasswordField;
+    private Button btnNext;
+    private USER user;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding_create_password);
 
-        mAuth = FirebaseAuth.getInstance();
+        Intent intent = getIntent();
+        user = (USER) intent.getSerializableExtra("user");
 
-//        emailField = findViewById(R.id.emailField); // replace with your actual email field ID
-//        passwordField = findViewById(R.id.passwordField); // replace with your actual password field ID
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        passwordField = findViewById(R.id.ediTxtPasswordONB);
+        confirmPasswordField = findViewById(R.id.ediTxtConfirmPasswordONB);
+        btnNext = findViewById(R.id.btnNextConfirmPassONB);
+        btnNext.setOnClickListener(v -> {
+            String password = passwordField.getText().toString();
+            String confirmPassword = confirmPasswordField.getText().toString();
+            if (password.equals(confirmPassword)) {
+                createAccount(user.getEmail(), password);
+            }
+        });
     }
 
     private void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        // updateUI(user);
+                        FirebaseUser authUser = mAuth.getCurrentUser();
+
+                        String encodedEmail = user.encodeEmail(email);
+                        mDatabase.child("USERS").child(encodedEmail).setValue(user);
+
+                        Toast.makeText(OnboardingCreatePassword.this, "Account created successfully.",
+                                Toast.LENGTH_SHORT).show();
+
+                        Intent newAct = new Intent(OnboardingCreatePassword.this, ManagerDashboardActivity.class);
+                        startActivity(newAct);
                     } else {
-                        // If sign in fails, display a message to the user.
-                        // updateUI(null);
+                        Toast.makeText(OnboardingCreatePassword.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
     }

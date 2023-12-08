@@ -17,8 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class OnboardWelcome extends AppCompatActivity {
     Button btnBegin;
-    String employeeEmail;
-    String employeeId = "1";
+    String userEmail;
+    String userId = "1";
     DatabaseReference dbRef;
 
     @Override
@@ -26,22 +26,22 @@ public class OnboardWelcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboard_welcome);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("employees");
+        dbRef = FirebaseDatabase.getInstance().getReference("USERS");
 
         Intent intent = getIntent();
         String action = intent.getAction();
         Uri data = intent.getData();
 
         if (Intent.ACTION_VIEW.equals(action) && data != null) {
-            employeeId = data.getLastPathSegment();
+            userId = data.getLastPathSegment();
         }
 
-        if (!employeeId.isEmpty()) {
-            dbRef.child(String.valueOf(employeeId)).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (!userId.isEmpty()) {
+            dbRef.child(String.valueOf(userId)).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        employeeEmail = dataSnapshot.child("email").getValue(String.class);
+                        userEmail = dataSnapshot.child("email").getValue(String.class);
                     }
                 }
 
@@ -58,9 +58,10 @@ public class OnboardWelcome extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newAct = new Intent(OnboardWelcome.this, OnboardingPhoneNumber.class);
-                newAct.putExtra("employeeId", employeeId);
-                newAct.putExtra("employeeEmail", employeeEmail);
-                startActivity(newAct);
+                if(!userId.isEmpty() && !userEmail.isEmpty()){
+                    newAct.putExtra("userEmail", userEmail);
+                    startActivity(newAct);
+                }
             }
         });
 

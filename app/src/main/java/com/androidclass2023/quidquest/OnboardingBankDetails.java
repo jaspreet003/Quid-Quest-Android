@@ -15,11 +15,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.Employee;
-
+import model.USER;
 public class OnboardingBankDetails extends AppCompatActivity {
-    int employeeId;
-    Employee employee;
+    USER user;
     EditText accNumEditText, transNumEditText, insNumEditText;
     Button nextButton;
 
@@ -31,8 +29,7 @@ public class OnboardingBankDetails extends AppCompatActivity {
         // Extract the employeeId and Employee object from the intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            employeeId = extras.getInt("employeeId");
-            employee = (Employee) extras.getSerializable("employee");
+            user = (USER) extras.getSerializable("user");
         }
 
         // Find the EditText fields by their IDs
@@ -51,29 +48,28 @@ public class OnboardingBankDetails extends AppCompatActivity {
                 int insNum = Integer.parseInt(insNumEditText.getText().toString());
 
                 // Update the Employee object
-                employee.setAccNum(accNum);
-                employee.setTransNum(transNum);
-                employee.setInsNum(insNum);
+                user.setAccNum(accNum);
+                user.setTransNum(transNum);
+                user.setInsNum(insNum);
 
                 // Update the employee in the Firebase Realtime Database
-                updateEmployee(employee);
+                updateUser(user);
             }
         });
     }
 
-    private void updateEmployee(Employee employee) {
+    private void updateUser(USER user) {
         // Get a reference to the USERS node
         DatabaseReference employeesDB = FirebaseDatabase.getInstance().getReference("employees");
-
+        String encodedEmail = user.encodeEmail(user.getEmail());
         // Write the updated employee data
-        employeesDB.child(String.valueOf(employeeId)).setValue(employee)
+        employeesDB.child(String.valueOf(encodedEmail)).setValue(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // The write was successful, start the next activity
                         Intent newAct = new Intent(OnboardingBankDetails.this, OnboardingVerifyDetails.class);
-                        newAct.putExtra("employeeId", employeeId);
-                        newAct.putExtra("employee", employee);
+                        newAct.putExtra("user", user);
                         startActivity(newAct);
                     }
                 })

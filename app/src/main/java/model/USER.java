@@ -7,7 +7,8 @@ public class USER implements Serializable {
     String firstName, lastName, email, phoneNumber;
     int accNum, transNum, insNum;
 
-    public USER(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum, int insNum) {
+    public USER(String firstName, String lastName, String email, String phoneNumber, int accNum, int transNum,
+            int insNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -71,5 +72,9 @@ public class USER implements Serializable {
 
     public void setInsNum(int insNum) {
         this.insNum = insNum;
+    }
+
+    public String encodeEmail(String email) {
+        return email.replace('.', '-').replace('@', '-');
     }
 }

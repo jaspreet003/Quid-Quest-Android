@@ -15,14 +15,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import model.Employee;
+import model.USER;
 
 public class OnboardingPhoneNumber extends AppCompatActivity {
-    int employeeId;
     EditText firstNameEditText, lastNameEditText, phoneNumberEditText;
     Button nextButton;
 
-    String employeeEmail;
+    String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     private void initialize() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            employeeId = extras.getInt("employeeId");
-            employeeEmail = extras.getString("employeeEmail");
+            userEmail = extras.getString("userEmail");
         }
         firstNameEditText = findViewById(R.id.editTxtFirstNameOnB);
         lastNameEditText = findViewById(R.id.editTxtLastNameOnB);
@@ -50,35 +48,32 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
                 String lastName = lastNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
 
-                updateEmployee(firstName, lastName, phoneNumber);
+                updateUser(firstName, lastName, phoneNumber);
             }
         });
     }
 
-    private void updateEmployee(String firstName, String lastName, String phoneNumber) {
+    private void updateUser(String firstName, String lastName, String phoneNumber) {
         // Get a reference to the USERS node
-        DatabaseReference employeesDB = FirebaseDatabase.getInstance().getReference("employees");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("USERS");
 
         // Create a new Employee object
-        Employee newEmployee = new Employee(
+        USER newUser = new USER(
                 firstName,
                 lastName,
-                employeeEmail,
+                userEmail,
                 phoneNumber,
-                employeeId,
                 0,
                 0,
                 0);
 
         // Write the new employee data
-        employeesDB.child(String.valueOf(employeeId)).setValue(newEmployee)
+        userRef.child(String.valueOf(userEmail)).setValue(newUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // The write was successful, start the next activity
                         Intent intent = new Intent(OnboardingPhoneNumber.this, OnboardingBankDetails.class);
-                        intent.putExtra("employeeId", employeeId);
-                        intent.putExtra("employee", newEmployee); // Note: Employee class must implement Serializable
+                        intent.putExtra("user", newUser);
                         startActivity(intent);
                     }
                 })

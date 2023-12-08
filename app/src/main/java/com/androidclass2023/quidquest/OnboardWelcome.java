@@ -18,50 +18,31 @@ import com.google.firebase.database.ValueEventListener;
 public class OnboardWelcome extends AppCompatActivity {
     Button btnBegin;
     String userEmail;
-    String userId = "1";
-    DatabaseReference dbRef;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboard_welcome);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("USERS");
+        userId = "sandeep-gmail_com";
 
         Intent intent = getIntent();
         String action = intent.getAction();
         Uri data = intent.getData();
 
-        if (Intent.ACTION_VIEW.equals(action) && data != null) {
-            userId = data.getLastPathSegment();
-        }
+        // if (Intent.ACTION_VIEW.equals(action) && data != null) {
+        // userId = data.getLastPathSegment();
+        // }
 
-        if (!userId.isEmpty()) {
-            dbRef.child(String.valueOf(userId)).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        userEmail = dataSnapshot.child("email").getValue(String.class);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle possible errors.
-                    Log.e("onCancelled", "onCancelled: " + databaseError.getMessage());
-                }
-            });
-        }
 
         btnBegin = findViewById(R.id.btnBeginOnboarding);
         btnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent newAct = new Intent(OnboardWelcome.this, OnboardingPhoneNumber.class);
-                if(!userId.isEmpty() && !userEmail.isEmpty()){
-                    newAct.putExtra("userEmail", userEmail);
-                    startActivity(newAct);
-                }
+                newAct.putExtra("userEmail", userId);
+                startActivity(newAct);
             }
         });
 

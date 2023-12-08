@@ -21,7 +21,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     EditText firstNameEditText, lastNameEditText, phoneNumberEditText;
     Button nextButton;
 
-    String userEmail;
+    String userEmail, decodedEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,8 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
 
     private void initialize() {
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            userEmail = extras.getString("userEmail");
-        }
+        userEmail = extras.getString("userEmail");
+        decodedEmail = userEmail.replace("_", ".").replace("-", "@");
         firstNameEditText = findViewById(R.id.editTxtFirstNameOnB);
         lastNameEditText = findViewById(R.id.editTxtLastNameOnB);
         phoneNumberEditText = findViewById(R.id.ediTxtEnterPhoneNumber);
@@ -61,14 +60,16 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
         USER newUser = new USER(
                 firstName,
                 lastName,
-                userEmail,
+                decodedEmail,
                 phoneNumber,
                 0,
                 0,
                 0);
 
+        Log.d("OnboardingPhoneNumber", "updateUser: " + newUser.toString());
+        Log.d("OnboardingPhoneNumber", "updateUser: " + userEmail);
         // Write the new employee data
-        userRef.child(String.valueOf(userEmail)).setValue(newUser)
+        userRef.child(userEmail).setValue(newUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

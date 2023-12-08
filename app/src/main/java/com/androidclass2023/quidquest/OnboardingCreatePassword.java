@@ -19,8 +19,8 @@ public class OnboardingCreatePassword extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        emailField = findViewById(R.id.emailField); // replace with your actual email field ID
-        passwordField = findViewById(R.id.passwordField); // replace with your actual password field ID
+//        emailField = findViewById(R.id.emailField); // replace with your actual email field ID
+//        passwordField = findViewById(R.id.passwordField); // replace with your actual password field ID
     }
 
     private void createAccount(String email, String password) {

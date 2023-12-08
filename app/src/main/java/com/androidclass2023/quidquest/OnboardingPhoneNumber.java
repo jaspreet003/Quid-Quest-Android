@@ -22,6 +22,8 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     EditText firstNameEditText, lastNameEditText, phoneNumberEditText;
     Button nextButton;
 
+    String employeeEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             employeeId = extras.getInt("employeeId");
+            employeeEmail = extras.getString("employeeEmail");
         }
         firstNameEditText = findViewById(R.id.editTxtFirstNameOnB);
         lastNameEditText = findViewById(R.id.editTxtLastNameOnB);
@@ -60,13 +63,12 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
         Employee newEmployee = new Employee(
                 firstName,
                 lastName,
-                "",
+                employeeEmail,
                 phoneNumber,
                 employeeId,
                 0,
                 0,
-                0
-        );
+                0);
 
         // Write the new employee data
         employeesDB.child(String.valueOf(employeeId)).setValue(newEmployee)

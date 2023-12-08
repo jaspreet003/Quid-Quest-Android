@@ -12,7 +12,8 @@ import model.Employee;
 public class OnboardingVerifyDetails extends AppCompatActivity {
     private static final String EMPLOYEES_DB = "employees";
     private Employee employee;
-    private EditText firstNameEditText, lastNameEditText, phoneNumberEditText, accNumEditText, transNumEditText, insNumEditText;
+    private EditText firstNameEditText, lastNameEditText, phoneNumberEditText, accNumEditText, transNumEditText,
+            insNumEditText;
     private Button btnContinue, btnEdit;
 
     @Override
@@ -88,6 +89,7 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
 
     private void startNextActivity() {
         Intent intent = new Intent(this, OnboardingCreatePassword.class);
+        intent.putExtra("employee", employee);
         startActivity(intent);
     }
 

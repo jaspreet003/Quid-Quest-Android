@@ -17,37 +17,37 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapters.ManageDepartmentAdapter;
-import model.Department;
+import adapters.ManageCategoryAdapter;
+import model.Category;
 
-public class ManageDepartmentActivity extends AppCompatActivity implements View.OnClickListener {
+public class ManageCategoryActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private DatabaseReference departmentsDB;
+    private DatabaseReference categoriesDB;
     private ListView listView;
-    private List<Department> departments;
-    private ManageDepartmentAdapter adapter;
-    ImageView imgAddDepartment;
+    private List<Category> categories;
+    private ManageCategoryAdapter adapter;
+    ImageView imgAddCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_department);
+        setContentView(R.layout.activity_manage_category);
 
-        departmentsDB = FirebaseDatabase.getInstance().getReference("Departments");
-        listView = findViewById(R.id.lstVManageDepartments);
-        imgAddDepartment = findViewById(R.id.imgAddDepartment);
-        departments = new ArrayList<>();
-        adapter = new ManageDepartmentAdapter(this, departments);
+        categoriesDB = FirebaseDatabase.getInstance().getReference("Categories");
+        listView = findViewById(R.id.lstVManageCategory);
+        imgAddCategory = findViewById(R.id.imgAddCategory);
+        categories = new ArrayList<>();
+        adapter = new ManageCategoryAdapter(this, categories);
         listView.setAdapter(adapter);
-        imgAddDepartment.setOnClickListener(this);
+        imgAddCategory.setOnClickListener(this);
 
-        departmentsDB.addValueEventListener(new ValueEventListener() {
+        categoriesDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                departments.clear();
+                categories.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Department department = new Department(snapshot.getValue(String.class));
-                    departments.add(department);
+                    Category category = new Category(snapshot.getValue(String.class));
+                    categories.add(category);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -61,9 +61,9 @@ public class ManageDepartmentActivity extends AppCompatActivity implements View.
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.imgAddDepartment) {
-        Intent intent = new Intent(ManageDepartmentActivity.this, AddDepartmentActivity.class);
-        startActivity(intent);
-    }
+        if (v.getId() == R.id.imgAddCategory) {
+            Intent intent = new Intent(ManageCategoryActivity.this, AddCategoryActivity.class);
+            startActivity(intent);
+        }
     }
 }

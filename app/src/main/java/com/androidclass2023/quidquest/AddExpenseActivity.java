@@ -215,15 +215,7 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
 
 
     private void BackToExpenseScreen() {
-
-
-
-        Intent intent = new Intent(AddExpenseActivity.this, Expense_Screen.class);
-
-        startActivity(intent);
-
-
-
+        finish();
     }
 
 

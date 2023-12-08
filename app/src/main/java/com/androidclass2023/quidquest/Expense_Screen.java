@@ -27,16 +27,16 @@ import java.util.List;
 import adapters.ExpenseAdapter;
 import model.Expense;
 
-public class Expense_Screen extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener{
+public class Expense_Screen extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
     Button btnAdd;
 
     private ListView lvExpenses;
 
     DatabaseReference databaseExpenses;
 
-    //FirebaseStorage storage;
+    // FirebaseStorage storage;
 
-    //StorageReference storageReference, sRef;
+    // StorageReference storageReference, sRef;
     LinearLayout btnLayout, mLayout;
 
     @Override
@@ -53,7 +53,11 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadExpenses();
+    }
 
     private void initialize() {
         lvExpenses = findViewById(R.id.lvExpenses);
@@ -62,11 +66,13 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
         btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
+    }
 
-
+    private void loadExpenses() {
         List<Expense> expenses = new ArrayList<>();
         databaseExpenses.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
+                expenses.clear(); // Clear the list to avoid duplicates
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     // Get user name and department
                     String email = userSnapshot.getKey();
@@ -85,7 +91,8 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
                                 Double amount = expenseSnapshot.child("Amount").getValue(Double.class);
                                 String ID = expenseSnapshot.getKey();
 
-                                Expense expense = new Expense(category, description, userName, userDepartment, email, ID, amount);
+                                Expense expense = new Expense(category, description, userName, userDepartment, email,
+                                        ID, amount);
                                 expenses.add(expense);
                             }
                         }
@@ -101,23 +108,17 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
             public void onCancelled(DatabaseError databaseError) {
                 // Handle possible errors.
             }
-
-
         });
-
     }
-
-
-
 
     private void showAlert(String message) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder( Expense_Screen.this );
+        AlertDialog.Builder builder = new AlertDialog.Builder(Expense_Screen.this);
 
-        builder.setTitle( "Notification" )
-                .setMessage( message )
-                .setPositiveButton( "OK", (dialogInterface, i) -> {
-                } )
+        builder.setTitle("Notification")
+                .setMessage(message)
+                .setPositiveButton("OK", (dialogInterface, i) -> {
+                })
                 .show();
 
     }
@@ -142,7 +143,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         startActivity(intent);
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -154,14 +154,12 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
     private void addExpense() {
 
-        Intent intent = new Intent( Expense_Screen.this, AddExpenseActivity.class );
-        startActivity( intent );
-
-
+        Intent intent = new Intent(Expense_Screen.this, AddExpenseActivity.class);
+        startActivity(intent);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-//        btnLayout = findViewById(R.id.btnLayout);
+        // btnLayout = findViewById(R.id.btnLayout);
         mLayout = findViewById(R.id.mLayout);
         mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
     }
@@ -176,10 +174,10 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         return super.onOptionsItemSelected(item);
     }
 
-//    public void expand(View view) {
-//        int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
-//
-//        TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
-//        btnLayout.setVisibility(v);
-//    }
+    // public void expand(View view) {
+    // int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
+    //
+    // TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
+    // btnLayout.setVisibility(v);
+    // }
 }

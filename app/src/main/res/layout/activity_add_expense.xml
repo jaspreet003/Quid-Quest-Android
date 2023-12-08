@@ -78,12 +78,11 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                style="@style/Expenses_Text"
+                android:text="Category" style="@style/Expenses_Text"
                 />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/categoriesSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 />
@@ -117,12 +116,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imgFolder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:src="@drawable/baseline_folder_open_24"
-                    android:layout_gravity="right | center"/>
+                />
+
                 <EditText
                     android:id="@+id/edAttachedFile"
                     android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                 android:layout_gravity="">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnClearData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -165,7 +165,7 @@
                     />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnAddExpense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

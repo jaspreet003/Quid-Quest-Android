@@ -68,12 +68,12 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
     }
 
     private void setViewListeners() {
-        btnContinue.setOnClickListener(v -> saveEmployeeDetails());
+        btnContinue.setOnClickListener(v -> saveDetails());
         btnEdit.setOnClickListener(v -> setFieldsEnabled(true));
     }
 
-    private void saveEmployeeDetails() {
-        updateEmployeeFromFields();
+    private void saveDetails() {
+        updateFromFields();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference(USER_REF);
         String encodedEmail = USER.encodeEmail(user.getEmail());
         userRef.child(encodedEmail).setValue(user)
@@ -81,7 +81,7 @@ public class OnboardingVerifyDetails extends AppCompatActivity {
                 .addOnFailureListener(this::handleDatabaseWriteFailure);
     }
 
-    private void updateEmployeeFromFields() {
+    private void updateFromFields() {
         user.setFirstName(firstNameEditText.getText().toString());
         user.setLastName(lastNameEditText.getText().toString());
         user.setPhoneNumber(phoneNumberEditText.getText().toString());

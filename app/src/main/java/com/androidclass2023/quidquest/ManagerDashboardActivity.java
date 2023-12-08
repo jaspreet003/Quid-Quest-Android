@@ -66,7 +66,7 @@ public class ManagerDashboardActivity extends AppCompatActivity implements View.
                 Intent intent = new Intent(ManagerDashboardActivity.this, Expense_Screen.class);
                 startActivity(intent);
             } else if (id == R.id.nav_settings) {
-                Intent intent = new Intent(ManagerDashboardActivity.this, Seetings_Menu.class);
+                Intent intent = new Intent(ManagerDashboardActivity.this, Settings_Menu.class);
                 startActivity(intent);
             } else if (id == R.id.nav_employees) {
                 Intent intent = new Intent(ManagerDashboardActivity.this, EmployeeLIstScreen.class);

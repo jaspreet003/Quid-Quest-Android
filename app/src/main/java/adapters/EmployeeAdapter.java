@@ -25,11 +25,9 @@ import java.util.ArrayList;
 public class EmployeeAdapter extends ArrayAdapter<String> {
 
     private int viewType;
-    DatabaseReference employeeDatabase ;
+    DatabaseReference employeeDatabase;
 
-
-    public EmployeeAdapter(Context context, ArrayList<String> employees, int viewType)
-    {
+    public EmployeeAdapter(Context context, ArrayList<String> employees, int viewType) {
         super(context, 0, employees);
 
         this.viewType = viewType;
@@ -41,22 +39,34 @@ public class EmployeeAdapter extends ArrayAdapter<String> {
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.profile_item, parent, false);
-
-            }
+        }
         String employee = getItem(position);
 
-        employeeDatabase = FirebaseDatabase.getInstance().getReference().child("USERS").child(employee).child("Name");
+        DatabaseReference employeeDatabase = FirebaseDatabase.getInstance().getReference().child("USERS")
+                .child(employee);
 
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         TextView tvEmail = (TextView) convertView.findViewById(R.id.tvEmail);
 
-
         // Get the data item for this position
-        String email = employee.replace( "-", "@" ).replace( "_", "." );
+        String email = employee.replace("-", "@").replace("_", ".");
         employeeDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tvName.setText(snapshot.getValue().toString());
+                String name = null;
+                if (snapshot.child("fullName").getValue() != null) {
+                    name = snapshot.child("fullName").getValue().toString();
+                } else if (snapshot.child("Name").getValue() != null) {
+                    name = snapshot.child("Name").getValue().toString();
+                } else if (snapshot.child("firstName").getValue() != null) {
+                    name = snapshot.child("firstName").getValue().toString();
+                }
+
+                if (name != null) {
+                    tvName.setText(name);
+                } else {
+                    tvName.setText("No name available");
+                }
             }
 
             @Override
@@ -67,7 +77,5 @@ public class EmployeeAdapter extends ArrayAdapter<String> {
 
         tvEmail.setText(email);
         return convertView;
-
     }
 }
-

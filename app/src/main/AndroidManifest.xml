@@ -17,13 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".ManageDepartmentActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".InviteEmployeeActivity"
             android:exported="false" />
@@ -35,7 +29,14 @@
             android:exported="true" />
         <activity
             android:name=".UpdatePasswordActivity"
-            android:exported="false" />
+            android:exported="true">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
         <activity
             android:name=".ResetPassword"
             android:exported="false" />

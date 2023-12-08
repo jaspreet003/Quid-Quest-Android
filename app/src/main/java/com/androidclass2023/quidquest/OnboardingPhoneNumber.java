@@ -53,10 +53,8 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
     }
 
     private void updateUser(String firstName, String lastName, String phoneNumber) {
-        // Get a reference to the USERS node
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("USERS");
 
-        // Create a new Employee object
         User newUser = new User(
                 firstName,
                 lastName,
@@ -70,7 +68,7 @@ public class OnboardingPhoneNumber extends AppCompatActivity {
 
         Log.d("OnboardingPhoneNumber", "updateUser: " + newUser.toString());
         Log.d("OnboardingPhoneNumber", "updateUser: " + userEmail);
-        // Write the new employee data
+
         userRef.child(userEmail).setValue(newUser)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

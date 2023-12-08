@@ -96,12 +96,10 @@ public class ManagerDashboardActivity extends AppCompatActivity implements View.
     }
 
     private void initialize() {
-        // Configure the variables
         btnMonthly = findViewById(R.id.btnMonthly);
         btnWeekly = findViewById(R.id.btnWeekly);
         btnLastMonth = findViewById(R.id.btnLastMonth);
 
-        // setting listener to buttons
         btnWeekly.setOnClickListener(this);
         btnMonthly.setOnClickListener(this);
         btnLastMonth.setOnClickListener(this);

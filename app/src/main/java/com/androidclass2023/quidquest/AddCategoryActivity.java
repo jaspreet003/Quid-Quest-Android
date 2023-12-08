@@ -30,7 +30,6 @@ public class AddCategoryActivity extends AppCompatActivity {
         editTextCategoryName = findViewById(R.id.editTextCategoryName);
         btnSave = findViewById(R.id.btnSave);
 
-        // Getting the database reference
         databaseCategories = FirebaseDatabase.getInstance().getReference("Categories");
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +61,12 @@ public class AddCategoryActivity extends AppCompatActivity {
                     }
                 }
 
-                // If it's not a duplicate, proceed with adding
                 List<String> categories = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     categories.add(child.getValue(String.class));
                 }
-                // Add the new department at the end
                 categories.add(categoryName);
 
-                // Update the entire array
                 databaseCategories.setValue(categories)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {

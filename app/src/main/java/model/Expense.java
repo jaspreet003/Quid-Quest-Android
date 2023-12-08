@@ -7,18 +7,13 @@ import com.google.firebase.database.PropertyName;
 import java.io.Serializable;
 
 public class Expense implements Serializable {
-
     private String Category, Description, name, Department, email, expenseID;
-
-
-
     private Double Amount;
 
     public Expense(Double amount, String description) {
         Description = description;
         Amount = amount;
     }
-
     public Expense(String category, String description, String name, String department, String email, String expenseID, Double amount) {
         Category = category;
         Description = description;
@@ -89,7 +84,6 @@ public class Expense implements Serializable {
     public void setAmount(Double amount) {
         Amount = amount;
     }
-
 
     @NonNull
     @Override

@@ -53,7 +53,6 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -100,63 +99,40 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
     }
 
     private void showAlert(String message) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(SingleExpenseActivity.this);
-
         builder.setTitle("Notification")
                 .setMessage(message)
                 .setPositiveButton("OK", (dialogInterface, i) -> {
                 })
                 .show();
-
     }
 
     @Override
     public void onClick(View v) {
-
         int id = v.getId();
         if (id == R.id.btnApprove)
             Approve();
 
         if (id == R.id.btnDecline)
             Decline();
-
-
-
     }
 
     private void BackToExpenseScreen() {
-
-
-
-        Intent intent = new Intent(SingleExpenseActivity.this, Expense_Screen.class);
-
-        startActivity(intent);
-
-
-
+        finish();
     }
 
     private void Decline() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Are you sure you want to decline the expense?");
-
-
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-
-
                 DeclineExpense();
-
-
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
                 dialog.dismiss();
             }
         });
@@ -209,38 +185,26 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-
                 ApproveExpense();
-
-
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
                 dialog.dismiss();
             }
         });
-
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
-
     }
 
 
     private void ApproveExpense() {
-
-
         String userEmail = email;
         String expenseCategory = category;
         String expenseId = id;
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
 
         DatabaseReference expenseRef = databaseReference.child("USERS")
                 .child(userEmail)
@@ -249,26 +213,14 @@ public class SingleExpenseActivity extends AppCompatActivity implements View.OnC
                 .child(expenseCategory)
                 .child(expenseId);
 
-
         expenseRef.child("Approved").setValue(true)
                 .addOnSuccessListener(aVoid -> {
-
                     Log.d("UpdateExpense", "Expense successfully approved");
-
                 })
                 .addOnFailureListener(e -> {
-
                     Log.d("UpdateExpense", "Failed to approve expense: " + e.getMessage());
                 });
-
-
         BackToExpenseScreen();
-
-
     }
-
-
-
-
 }
 

@@ -34,7 +34,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         edConfirmNewPw = findViewById(R.id.edConfirmNewPw);
         btnUpdate = findViewById(R.id.btnUpdate);
 
-        // Set click listener for the update button
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +44,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -56,13 +54,11 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         String newPassword = edNewPw.getText().toString().trim();
         String confirmNewPassword = edConfirmNewPw.getText().toString().trim();
 
-        // Check if user is logged in
         if (auth.getCurrentUser() == null) {
             Toast.makeText(this, "No user is logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validate the new passwords
         if (newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
             Toast.makeText(this, "Please enter and confirm the new password", Toast.LENGTH_SHORT).show();
             return;
@@ -73,7 +69,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             return;
         }
 
-        // Update the user's password
         auth.getCurrentUser().updatePassword(newPassword)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -81,9 +76,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(UpdatePasswordActivity.this, "Password updated successfully",
                                     Toast.LENGTH_SHORT).show();
-                            // Optional: sign out the user or navigate to the login screen
                             finish();
-                            // Navigate to Login Activity or other appropriate activity
                         } else {
                             Toast.makeText(UpdatePasswordActivity.this, "Failed to update password", Toast.LENGTH_SHORT)
                                     .show();

@@ -34,9 +34,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
     DatabaseReference databaseExpenses;
 
-    // FirebaseStorage storage;
-
-    // StorageReference storageReference, sRef;
     LinearLayout btnLayout, mLayout;
 
     @Override
@@ -46,7 +43,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Initialize Firebase Database reference
         databaseExpenses = FirebaseDatabase.getInstance().getReference().child("USERS");
 
         initialize();
@@ -72,9 +68,8 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         List<Expense> expenses = new ArrayList<>();
         databaseExpenses.addListenerForSingleValueEvent(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
-                expenses.clear(); // Clear the list to avoid duplicates
+                expenses.clear();
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    // Get user name and department
                     String email = userSnapshot.getKey();
                     String userName = userSnapshot.child("name").getValue(String.class);
                     String userDepartment = userSnapshot.child("department").getValue(String.class);
@@ -84,9 +79,7 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
                         String category = categorySnapshot.getKey();
 
                         for (DataSnapshot expenseSnapshot : categorySnapshot.getChildren()) {
-                            // Check if the "Approved" field exists
                             if (!expenseSnapshot.hasChild("Approved")) {
-                                // Get expense details
                                 String description = expenseSnapshot.child("Description").getValue(String.class);
                                 Double amount = expenseSnapshot.child("Amount").getValue(Double.class);
                                 String ID = expenseSnapshot.getKey();
@@ -99,22 +92,18 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
                     }
                 }
 
-                // Set the adapter for the ListView
                 ExpenseAdapter adapter = new ExpenseAdapter(Expense_Screen.this, expenses);
                 lvExpenses.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
             }
         });
     }
 
     private void showAlert(String message) {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(Expense_Screen.this);
-
         builder.setTitle("Notification")
                 .setMessage(message)
                 .setPositiveButton("OK", (dialogInterface, i) -> {
@@ -127,10 +116,8 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Expense clickedExpense = (Expense) parent.getItemAtPosition(position);
 
-        // Create an Intent to start the ExpenseDetailActivity
         Intent intent = new Intent(Expense_Screen.this, SingleExpenseActivity.class);
 
-        // Pass the details of the clicked item to the new activity
         intent.putExtra("category", clickedExpense.getCategory());
         intent.putExtra("description", clickedExpense.getDescription());
         intent.putExtra("userName", clickedExpense.getName());
@@ -139,7 +126,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
         intent.putExtra("email", clickedExpense.getEmail());
         intent.putExtra("ID", clickedExpense.getExpenseID());
 
-        // Start the new activity
         startActivity(intent);
     }
 
@@ -159,7 +145,6 @@ public class Expense_Screen extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // btnLayout = findViewById(R.id.btnLayout);
         mLayout = findViewById(R.id.mLayout);
         mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
     }

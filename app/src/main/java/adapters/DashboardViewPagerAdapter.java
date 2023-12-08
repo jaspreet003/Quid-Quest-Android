@@ -16,7 +16,6 @@ public class DashboardViewPagerAdapter extends FragmentStateAdapter{
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            // Determine which fragment to show based on the position
             switch (position) {
                 case 0:
                     return new CategoryFragment();

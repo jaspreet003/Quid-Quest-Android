@@ -80,19 +80,14 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
                     categories.add(category);
                 }
 
-                // Find the spinner in the layout
                 categoriesSpinner = findViewById(R.id.categoriesSpinner);
-                // Create an ArrayAdapter using the string array and a default spinner layout
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(AddExpenseActivity.this, android.R.layout.simple_spinner_item, categories);
-                // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                // Apply the adapter to the spinner
                 categoriesSpinner.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
             }
         });
 
@@ -119,24 +114,19 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
 
     private void AddExpense() {
 
-        // Assuming you have the current user's email
-        //String safeEmail = currentUserEmail.replace('.', '_');
         String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail().replace("@", "-")
                 .replace(".", "_");
-        // Get values from the UI
         String category = categoriesSpinner.getSelectedItem().toString();
         String description = edDescription.getText().toString();
         double amount;
         try {
             amount = Double.parseDouble(edExpenseAmount.getText().toString());
         } catch (NumberFormatException e) {
-            amount = 0; // handle invalid double conversion
+            amount = 0;
         }
 
-        // Create a new expense object
         Expense newExpense = new Expense(amount, description);
 
-        // Get reference to the user's expenses in the database
         DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference("USERS")
                 .child(currentUserEmail)
                 .child("EXPENSES")
@@ -153,21 +143,16 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
                     if (index > maxIndex) maxIndex = index;
                 }
                 long newIndex = maxIndex + 1;
-                // Create a new expense object
                 Expense newExpense = new Expense(finalAmount, description);
-                // Add new expense with the newIndex
                 categoryRef.child(String.valueOf(newIndex)).setValue(newExpense)
                         .addOnSuccessListener(aVoid -> {
-                            // Handle success
                         })
                         .addOnFailureListener(e -> {
-                            // Handle failure
                         });
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
             }
         });
 
@@ -191,17 +176,12 @@ public class AddExpenseActivity extends AppCompatActivity implements View.OnClic
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
-
                 AddExpense();
-
-
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
                 dialog.dismiss();
             }
         });

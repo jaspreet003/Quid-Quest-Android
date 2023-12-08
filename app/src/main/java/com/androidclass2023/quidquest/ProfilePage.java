@@ -38,7 +38,6 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Initialize EditText fields
         editTxtFirstNameProfile = findViewById(R.id.editTxtFirstNameProfile);
         editTxtLastNameProfile = findViewById(R.id.editTxtLastNameProfile);
         editTxtEmailProfile = findViewById(R.id.editTxtEmailProfile);
@@ -48,7 +47,6 @@ public class ProfilePage extends AppCompatActivity {
         editTxtInstituteNumberProfile = findViewById(R.id.editTxtInstituteNumberProfile);
         btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
 
-        // Initialize Firebase references
         databaseUsers = FirebaseDatabase.getInstance().getReference().child("USERS");
 
         populateUserData();
@@ -63,7 +61,6 @@ public class ProfilePage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -106,16 +103,6 @@ public class ProfilePage extends AppCompatActivity {
     }
 
     private void updateUser() {
-        // Get the updated data from the EditText fields
-        String firstName = editTxtFirstNameProfile.getText().toString();
-        String lastName = editTxtLastNameProfile.getText().toString();
-        String email = editTxtEmailProfile.getText().toString();
-        String phoneNumber = editTxtPhoneNumberProfile.getText().toString();
-        String accountNumber = editTxtAccountNumberProfile.getText().toString();
-        String transitNumber = editTxtTransitNumberProfile.getText().toString();
-        String instituteNumber = editTxtInstituteNumberProfile.getText().toString();
-
-        // Update the existing User object with the new data
         user.setFirstName(editTxtFirstNameProfile.getText().toString());
         user.setLastName(editTxtLastNameProfile.getText().toString());
         user.setEmail(editTxtEmailProfile.getText().toString());
@@ -124,7 +111,6 @@ public class ProfilePage extends AppCompatActivity {
         user.setTransitNumber(Integer.parseInt(editTxtTransitNumberProfile.getText().toString()));
         user.setInstituteNumber(Integer.parseInt(editTxtInstituteNumberProfile.getText().toString()));
 
-        // Update the user data in Firebase
         databaseUsers.child(encodedEmail).setValue(user)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

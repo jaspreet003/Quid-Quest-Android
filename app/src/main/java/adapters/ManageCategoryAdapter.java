@@ -107,13 +107,12 @@ public class ManageCategoryAdapter extends BaseAdapter {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                    childSnapshot.getRef().removeValue(); // This removes the category
+                    childSnapshot.getRef().removeValue();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
             }
         });
     }

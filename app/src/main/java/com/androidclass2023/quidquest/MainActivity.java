@@ -14,10 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Get the current FirebaseUser
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // If the user is already logged in, start the Dashboard activity
         if (currentUser != null) {
             Intent intent = new Intent(MainActivity.this, ManagerDashboardActivity.class);
             startActivity(intent);

@@ -32,7 +32,6 @@ public class Settings_Menu extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -43,7 +42,6 @@ public class Settings_Menu extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         int id = v.getId();
-
         if (id == R.id.tvLogOut) {
             showLogoutConfirmation();
         } else if (id == R.id.tvProfile) {
@@ -66,7 +64,6 @@ public class Settings_Menu extends AppCompatActivity implements View.OnClickList
     }
 
     private void logout() {
-        // TODO: Implement logout logic (like clearing user data)
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // To clear all
@@ -75,25 +72,21 @@ public class Settings_Menu extends AppCompatActivity implements View.OnClickList
     }
 
     private void navigateToProfile() {
-        // Navigate to Profile Activity
         Intent intent = new Intent(this, ProfilePage.class);
         startActivity(intent);
     }
 
     private void navigateToDepartment() {
-        // Navigate to Manage Departments Activity
         Intent intent = new Intent(this, ManageDepartmentActivity.class);
         startActivity(intent);
     }
 
     private void navigateToCategories() {
-        // Navigate to Manage Categories Activity
         Intent intent = new Intent(this, ManageCategoryActivity.class);
         startActivity(intent);
     }
 
     private void navigateToPassword() {
-        // Navigate to Manage Password Activity
         Intent intent = new Intent(this, UpdatePasswordActivity.class);
         startActivity(intent);
     }

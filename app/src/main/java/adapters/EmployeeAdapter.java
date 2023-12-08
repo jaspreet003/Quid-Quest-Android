@@ -36,7 +36,6 @@ public class EmployeeAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.profile_item, parent, false);
         }
@@ -48,7 +47,6 @@ public class EmployeeAdapter extends ArrayAdapter<String> {
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         TextView tvEmail = (TextView) convertView.findViewById(R.id.tvEmail);
 
-        // Get the data item for this position
         String email = employee.replace("-", "@").replace("_", ".");
         employeeDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

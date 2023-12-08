@@ -31,7 +31,6 @@ public class AddDepartmentActivity extends AppCompatActivity {
         editTextDepartmentName = findViewById(R.id.editTextDepartmentName);
         btnSave = findViewById(R.id.btnSave);
 
-        // Getting the database reference
         databaseDepartments = FirebaseDatabase.getInstance().getReference("Departments");
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +53,6 @@ public class AddDepartmentActivity extends AppCompatActivity {
         databaseDepartments.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Check for duplicates first
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String existingName = snapshot.getValue(String.class);
                     if (departmentName.equalsIgnoreCase(existingName)) {
@@ -63,15 +61,12 @@ public class AddDepartmentActivity extends AppCompatActivity {
                     }
                 }
 
-                // If it's not a duplicate, proceed with adding
                 List<String> departments = new ArrayList<>();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     departments.add(child.getValue(String.class));
                 }
-                // Add the new department at the end
                 departments.add(departmentName);
 
-                // Update the entire array
                 databaseDepartments.setValue(departments)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {

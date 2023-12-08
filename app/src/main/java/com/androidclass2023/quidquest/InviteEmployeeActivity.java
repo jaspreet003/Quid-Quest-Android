@@ -29,7 +29,6 @@ public class InviteEmployeeActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -40,6 +39,6 @@ public class InviteEmployeeActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         Snackbar.make(this.getCurrentFocus(), "Email has been sent!", Snackbar.LENGTH_LONG).show();
-
+        finish();
     }
 }

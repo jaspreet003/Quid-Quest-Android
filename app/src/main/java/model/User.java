@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String Name, email, department, firstName, lastName, phoneNumber, firebaseId;
-
     private int accountNumber, instituteNumber, totalExpenses, transitNumber;
-
     private Expense expense;
-
     public User() {
     }
 
@@ -35,7 +32,6 @@ public class User implements Serializable {
         this.instituteNumber = insNum;
         this.department = "TBD";
     }
-
     public String getFirstName() {
         return firstName;
     }

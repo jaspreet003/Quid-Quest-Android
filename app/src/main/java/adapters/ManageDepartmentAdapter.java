@@ -56,7 +56,6 @@ public class ManageDepartmentAdapter extends BaseAdapter {
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Show confirmation dialog
                 showDeleteConfirmationDialog(position);
             }
         });
@@ -64,7 +63,6 @@ public class ManageDepartmentAdapter extends BaseAdapter {
         Department department = departmentList.get(position);
 
         tvDepartmentName.setText(department.getName());
-        // Set other data to views as needed
 
         return convertView;
         }
@@ -93,26 +91,22 @@ public class ManageDepartmentAdapter extends BaseAdapter {
     }
 
     private void deleteDepartment(int position) {
-        // Get the department name to be deleted
         Department department = departmentList.get(position);
 
-        // Remove from local list
         departmentList.remove(position);
         notifyDataSetChanged();
 
-        // Remove from Firebase
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Departments");
         ref.orderByValue().equalTo(department.getName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-                    childSnapshot.getRef().removeValue(); // This removes the department
+                    childSnapshot.getRef().removeValue();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors.
             }
         });
     }

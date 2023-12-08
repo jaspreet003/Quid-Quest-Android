@@ -46,7 +46,6 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
                 return true;
@@ -113,9 +112,7 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
                     tvShowInstituteNumber.setText(instituteNumber != null ? String.valueOf(instituteNumber) : "N/A");
                     tvName.setText(userName != null ? userName : "N/A");
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -152,7 +149,6 @@ public class EmployeeEditPage extends AppCompatActivity implements View.OnClickL
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    // Do nothing or handle the case where "No" is clicked
                 }
             });
 

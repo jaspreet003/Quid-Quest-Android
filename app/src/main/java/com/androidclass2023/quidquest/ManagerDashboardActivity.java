@@ -16,6 +16,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
 import adapters.DashboardViewPagerAdapter;
 
 public class ManagerDashboardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -72,6 +74,13 @@ public class ManagerDashboardActivity extends AppCompatActivity implements View.
             } else if (id == R.id.nav_employees) {
                 Intent intent = new Intent(ManagerDashboardActivity.this, EmployeeLIstScreen.class);
                 startActivity(intent);
+            } else if (id == R.id.nav_logout) {
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(ManagerDashboardActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // To clear all the
+                startActivity(intent);
+                finish();
             }
 
             drawerLayout.closeDrawer(GravityCompat.START);

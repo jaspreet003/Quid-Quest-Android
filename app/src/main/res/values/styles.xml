@@ -4,4 +4,7 @@
     <style name="btn_dashboard"></style>
 
     <style name="btn_dashboard_selected"></style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="colorPrimary">@color/darkGreen</item>
+</style>
 </resources>

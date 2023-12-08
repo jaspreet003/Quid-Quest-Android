@@ -12,7 +12,8 @@ import android.widget.LinearLayout;
 
 public class Expense_Screen extends AppCompatActivity {
 
-    LinearLayout  btnLayout, mLayout;
+    LinearLayout btnLayout, mLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,15 +22,17 @@ public class Expense_Screen extends AppCompatActivity {
     }
 
     private void initialize() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         btnLayout = findViewById(R.id.btnLayout);
         mLayout = findViewById(R.id.mLayout);
         mLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
     }
 
     public void expand(View view) {
-        int v = (btnLayout.getVisibility() == View.GONE)? View.VISIBLE: View.GONE;
+        int v = (btnLayout.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
 
-        TransitionManager.beginDelayedTransition(mLayout,new AutoTransition());
+        TransitionManager.beginDelayedTransition(mLayout, new AutoTransition());
         btnLayout.setVisibility(v);
     }
 }

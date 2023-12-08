@@ -27,7 +27,8 @@ import java.util.ArrayList;
 
 import adapters.EmployeeAdapter;
 
-public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class EmployeeLIstScreen extends AppCompatActivity
+        implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     EditText edName;
     Spinner spnDepartment;
@@ -37,11 +38,13 @@ public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClic
     ArrayList<String> list = new ArrayList<>();
     EmployeeAdapter adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_list_screen);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initialize();
     }
 
@@ -51,7 +54,7 @@ public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClic
         edName = findViewById(R.id.edName);
         spnDepartment = findViewById(R.id.spnDepartment);
         lvEmployees = findViewById(R.id.lvEmployees);
-       adapter = new EmployeeAdapter(EmployeeLIstScreen.this, list, 2);
+        adapter = new EmployeeAdapter(EmployeeLIstScreen.this, list, 2);
 
         lvEmployees.setAdapter(adapter);
         lvEmployees.setClickable(true);
@@ -78,7 +81,6 @@ public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClic
             }
         });
 
-
         employeeDatabase = FirebaseDatabase.getInstance().getReference().child("USERS");
         employeeDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,7 +88,7 @@ public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClic
                 list.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
 
-                        list.add(snapshot1.getKey());
+                    list.add(snapshot1.getKey());
 
                 }
                 adapter.notifyDataSetChanged();
@@ -107,36 +109,36 @@ public class EmployeeLIstScreen extends AppCompatActivity implements View.OnClic
             }
 
             @Override
-            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+            }
 
             @Override
-            public void afterTextChanged(Editable arg0) {}
+            public void afterTextChanged(Editable arg0) {
+            }
         });
     }
 
-
-    private void populateSpinner (ArrayList < String > departments) {
+    private void populateSpinner(ArrayList<String> departments) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, departments);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spnDepartment.setAdapter(adapter);
     }
 
     @Override
-    public void onClick (View v){
+    public void onClick(View v) {
         int id = v.getId();
-        if (id == R.id.btnFilter)
-        {
+        if (id == R.id.btnFilter) {
             String department = spnDepartment.getSelectedItem().toString();
 
-        }else {
+        } else {
             Intent intent = new Intent(this, InviteEmployeeActivity.class);
             startActivity(intent);
         }
     }
 
     @Override
-    public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
-        String userEmail = parent.getItemAtPosition( position ).toString();
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String userEmail = parent.getItemAtPosition(position).toString();
         Intent intent = new Intent(this, EmployeeEditPage.class);
         intent.putExtra("user_email", userEmail);
         startActivity(intent);

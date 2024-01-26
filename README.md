@@ -1,4 +1,4 @@
-# Quid-Quest-An Expense Tracking Android App
+# QuidQuest - An Expense Tracking Android App
 
 ## Overview
 This Android application, built using Java and Firebase, is designed to help users and managers effectively track and manage expenses. It offers functionalities like user registration and login, viewing and inviting employees, and managing departments and expense categories.
